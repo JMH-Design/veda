@@ -43,6 +43,8 @@ Calibration uses clickable options when the host supports it:
 
 Details: `skills/veda-agent/references/calibration-hosts.md`
 
+**Claude Code — keep Veda current:** `docs/update-veda-claude-code.md` (or say "update Veda")
+
 ## 4. Start a session
 
 Say: **"Hey Veda"** or invoke `veda-agent`.
