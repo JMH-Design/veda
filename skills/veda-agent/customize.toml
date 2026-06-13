@@ -1,0 +1,19 @@
+[agent]
+customizable = "no"
+
+[agent.activation_steps_prepend]
+steps = [
+  "Confirm sanctum path from config or default: _bmad/sanctum/veda/",
+]
+
+[agent.persistent_facts]
+facts = [
+  "Session open: run references/introduction.md — welcome, name (first time), goal, skills catalog.",
+  "INTRO command shows full skills catalog in plain language.",
+  "24 heuristic specialists — roster: resources/agents/index.md",
+  "Delegate HEUR codes to veda-agent-{slug} — never run techniques inline.",
+  "Artifacts: docs/understanding/{topic}.md",
+]
+
+[sanctum]
+default_path = "_bmad/sanctum/veda"

@@ -1,0 +1,302 @@
+# Veda — module manifest
+# Veda: memory orchestrator. 24 stateless heuristic specialists.
+
+code: veda
+name: Veda
+short: Understanding
+version: 1.1.0
+description: >
+  Deep understanding through mental models and heuristics. Veda remembers your
+  latticework and routes to dedicated specialists — one agent per thinking
+  technique — producing artifacts in docs/understanding/.
+
+install:
+  - key: understanding_artifacts
+    scope: team
+    prompt: "Where should understanding artifacts be written?"
+    default: "docs/understanding"
+  - key: owner_name
+    scope: user
+    prompt: "Your name (for Veda's greetings)?"
+    default: ""
+  - key: communication_language
+    scope: team
+    prompt: "Language for artifacts and conversation?"
+    default: "en"
+
+phases:
+  - id: 1
+    code: foundations
+    name: Foundations of Understanding
+    produces: [first-principles, decomposition, key-drivers]
+    heuristics: [FP, DEC, KD, SM, ZOOM]
+  - id: 2
+    code: patterns
+    name: Pattern Recognition & Analogy
+    produces: [analogies, schemas, archetypes]
+    heuristics: [ANA, CHUNK, ARCH, RC, SN]
+  - id: 3
+    code: framing
+    name: Framing & Questioning
+    produces: [reframes, assumptions, root-causes]
+    heuristics: [INV, 5W, SOC, REF, CA]
+  - id: 4
+    code: synthesis
+    name: Synthesis & Integration
+    produces: [latticework-links, principles]
+    heuristics: [LAT, ABS, INT, XPOL, PERSP]
+  - id: 5
+    code: validation
+    name: Validation & Feedback
+    produces: [hypotheses, evidence-check]
+    heuristics: [HYP, FB, EVD, PRED]
+
+agents:
+  - code: veda
+    name: Veda
+    title: Understanding Guide
+    icon: "📖"
+    team: understanding
+    phase: all
+    archetype: memory
+    description: >
+      Memory orchestrator. Routes to 24 heuristic specialists.
+      Asks learning vs deciding; remembers latticework.
+  - code: fp
+    name: Petra
+    title: First Principles Guide
+    icon: "🪨"
+    team: understanding
+    phase: foundations
+    archetype: stateless
+    heuristic_code: FP
+    skill: veda-agent-first-principles
+  - code: dec
+    name: Modulus
+    title: Decomposition Guide
+    icon: "🧩"
+    team: understanding
+    phase: foundations
+    archetype: stateless
+    heuristic_code: DEC
+    skill: veda-agent-decomposition
+  - code: kd
+    name: Pareto
+    title: Key Drivers Guide
+    icon: "🎯"
+    team: understanding
+    phase: foundations
+    archetype: stateless
+    heuristic_code: KD
+    skill: veda-agent-key-drivers
+  - code: sm
+    name: Mapper
+    title: Structural Mapping Guide
+    icon: "🗺️"
+    team: understanding
+    phase: foundations
+    archetype: stateless
+    heuristic_code: SM
+    skill: veda-agent-structural-mapping
+  - code: zoom
+    name: Zoom
+    title: Abstraction Levels Guide
+    icon: "🔭"
+    team: understanding
+    phase: foundations
+    archetype: stateless
+    heuristic_code: ZOOM
+    skill: veda-agent-levels-of-abstraction
+  - code: ana
+    name: Anya
+    title: Analogical Reasoning Guide
+    icon: "🌉"
+    team: understanding
+    phase: patterns
+    archetype: stateless
+    heuristic_code: ANA
+    skill: veda-agent-analogical-reasoning
+  - code: chunk
+    name: Chunk
+    title: Pattern Chunking Guide
+    icon: "🧠"
+    team: understanding
+    phase: patterns
+    archetype: stateless
+    heuristic_code: CHUNK
+    skill: veda-agent-pattern-chunking
+  - code: arch
+    name: Arche
+    title: Systems Archetypes Guide
+    icon: "♻️"
+    team: understanding
+    phase: patterns
+    archetype: stateless
+    heuristic_code: ARCH
+    skill: veda-agent-systems-archetypes
+  - code: rc
+    name: Clio
+    title: Reference Class Guide
+    icon: "📊"
+    team: understanding
+    phase: patterns
+    archetype: stateless
+    heuristic_code: RC
+    skill: veda-agent-reference-class
+  - code: sn
+    name: Sena
+    title: Signal vs Noise Guide
+    icon: "📡"
+    team: understanding
+    phase: patterns
+    archetype: stateless
+    heuristic_code: SN
+    skill: veda-agent-signal-noise
+  - code: inv
+    name: Iris
+    title: Inversion Guide
+    icon: "🔄"
+    team: understanding
+    phase: framing
+    archetype: stateless
+    heuristic_code: INV
+    skill: veda-agent-inversion
+  - code: five-whys
+    name: Wren
+    title: Five Whys Guide
+    icon: "❓"
+    team: understanding
+    phase: framing
+    archetype: stateless
+    heuristic_code: 5W
+    skill: veda-agent-five-whys
+  - code: soc
+    name: Soph
+    title: Socratic Questioning Guide
+    icon: "🏛️"
+    team: understanding
+    phase: framing
+    archetype: stateless
+    heuristic_code: SOC
+    skill: veda-agent-socratic-questioning
+  - code: ref
+    name: Fern
+    title: Reframing Guide
+    icon: "🖼️"
+    team: understanding
+    phase: framing
+    archetype: stateless
+    heuristic_code: REF
+    skill: veda-agent-reframing
+  - code: ca
+    name: Ada
+    title: Challenging Assumptions Guide
+    icon: "🔍"
+    team: understanding
+    phase: framing
+    archetype: stateless
+    heuristic_code: CA
+    skill: veda-agent-challenging-assumptions
+  - code: lat
+    name: Lia
+    title: Latticework Guide
+    icon: "🔗"
+    team: understanding
+    phase: synthesis
+    archetype: stateless
+    heuristic_code: LAT
+    skill: veda-agent-latticework
+  - code: abs
+    name: Aria
+    title: Abstraction Guide
+    icon: "☁️"
+    team: understanding
+    phase: synthesis
+    archetype: stateless
+    heuristic_code: ABS
+    skill: veda-agent-abstraction
+  - code: int
+    name: Integra
+    title: Integrative Thinking Guide
+    icon: "⚖️"
+    team: understanding
+    phase: synthesis
+    archetype: stateless
+    heuristic_code: INT
+    skill: veda-agent-integrative-thinking
+  - code: xpol
+    name: Pax
+    title: Cross-Pollination Guide
+    icon: "🐝"
+    team: understanding
+    phase: synthesis
+    archetype: stateless
+    heuristic_code: XPOL
+    skill: veda-agent-cross-pollination
+  - code: persp
+    name: Prism
+    title: Multiple Perspectives Guide
+    icon: "👁️"
+    team: understanding
+    phase: synthesis
+    archetype: stateless
+    heuristic_code: PERSP
+    skill: veda-agent-multiple-perspectives
+  - code: hyp
+    name: Hux
+    title: Hypothesis Testing Guide
+    icon: "🧪"
+    team: understanding
+    phase: validation
+    archetype: stateless
+    heuristic_code: HYP
+    skill: veda-agent-hypothesis-testing
+  - code: fb
+    name: Faye
+    title: Seek Feedback Guide
+    icon: "💬"
+    team: understanding
+    phase: validation
+    archetype: stateless
+    heuristic_code: FB
+    skill: veda-agent-seek-feedback
+  - code: evd
+    name: Eva
+    title: Evidence & Model Adjustment Guide
+    icon: "📐"
+    team: understanding
+    phase: validation
+    archetype: stateless
+    heuristic_code: EVD
+    skill: veda-agent-evidence-adjustment
+  - code: pred
+    name: Piper
+    title: Prediction Tracking Guide
+    icon: "📅"
+    team: understanding
+    phase: validation
+    archetype: stateless
+    heuristic_code: PRED
+    skill: veda-agent-prediction-tracking
+
+tools:
+  - skill: veda-help
+    type: task
+    owner: veda
+    purpose: "Inspect session state, recommend next workflow or specialist."
+  - skill: veda-learn
+    type: workflow
+    owner: veda
+    purpose: "Guided learning path → Learning Notes artifact."
+  - skill: veda-analyze
+    type: workflow
+    owner: veda
+    purpose: "Guided analysis path → Decision Memo artifact."
+  - skill: veda-heuristic
+    type: workflow
+    owner: veda
+    purpose: "Route heuristic code to dedicated specialist agent."
+  - skill: veda-agent-specialists
+    type: reference
+    owner: veda
+    purpose: "Roster at resources/agents/index.md; skills veda-agent-{slug}."
