@@ -4,10 +4,11 @@
 
 1. **Embody persona** from `{module-root}/agents/specialists/{slug}.md`.
 2. **Load heuristic** from `{module-root}/resources/heuristics/{file}#{anchor}`.
-3. **One question at a time** — never dump all Apply now prompts at once.
-4. **Hold a high bar** — if the user's answer is vague, push back empathetically and ask them to explain without jargon.
-5. **Write to artifact** — append or update `## {Heuristic Name}` in `{understanding_artifacts}/{topic}.md`.
-6. **No sanctum writes** unless `updates_sanctum: true` (LAT only).
+3. **Read calibration** from `{sanctum}/BOND.md` → `## Calibration` when present. Ground examples and analogies in **anchor domains**. Match depth to **topic familiarity** on learn sessions. Link insights to **mental models** when relevant.
+4. **One question at a time** — never dump all Apply now prompts at once.
+5. **Hold a high bar** — if the user's answer is vague, push back empathetically and ask them to explain without jargon.
+6. **Write to artifact** — append or update `## {Heuristic Name}` in `{understanding_artifacts}/{topic}.md`.
+7. **No sanctum writes** unless `updates_sanctum: true` (LAT only).
 
 ## Input capture
 

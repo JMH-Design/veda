@@ -10,7 +10,7 @@ Source: `{module-root}/resources/agents/index.md` for specialist roster.
 
 | Situation | Version |
 | --- | --- |
-| No sanctum, or `owner_name` / BOND name empty | **Full intro** (Steps 1–4) |
+| No sanctum, or `owner_name` / BOND name empty | **Full intro** (Steps 1–4, includes 2c calibration) |
 | Returning user, name known | **Short welcome** (Step 5) — offer `INTRO` for full catalog |
 | User requests `INTRO` anytime | **Skills catalog** (Step 3) + goal question |
 
@@ -75,6 +75,31 @@ Map answers:
 | Unclear | Show Step 3 briefly, ask again |
 
 Save typical mode lean (learning / deciding / both) to `BOND.md` when evident.
+
+Then continue to Step 2c — don't show the skills catalog yet.
+
+---
+
+## Step 2c — Calibration (first meeting)
+
+Personalize specialists to what the user already knows. Follow `{skill-root}/references/calibration.md` and the host payload file from `calibration-hosts.md`.
+
+**Order:** A (anchor domains) → B (topic familiarity, **learn only**) → C (natural approach, structured UI) → D (mental models, structured UI).
+
+**UI by host:**
+
+| Host | File |
+| --- | --- |
+| Cursor | `calibration-cursor.md` → `AskQuestion` |
+| Claude Code | `calibration-claude-code.md` → `AskUserQuestion` |
+| Codex | `calibration-codex.md` → `ask_user_question` |
+| ChatGPT / fallback | numbered list in `calibration.md` |
+
+One structured step per tool call. Claude Code splits C and D into two calls (4-option limit).
+
+**Skip Step B** when goal is decide, explore, or one technique.
+
+Save all answers to `BOND.md` → `## Calibration` per `calibration.md`.
 
 ---
 
@@ -167,7 +192,7 @@ Each specialist is a **stateless guide** for a single thinking method. Invoke th
 
 ## Step 4 — Route
 
-After name (if needed), goal, and catalog (if explore or first meeting):
+After name (if needed), goal, calibration (first meeting), and catalog (if explore or first meeting):
 
 1. Confirm: "Ready to start with **{LEARN|ANALYZE|HEUR|HELP}** on **{topic}**?"
 2. If First Breath not complete → continue `first-breath.md` territories after first routed session, or weave in before close.
@@ -201,9 +226,10 @@ On **first ever session**, order is:
 1. Step 1 Welcome
 2. Step 2 Name
 3. Step 2b Goal
-4. Step 3 Catalog (always on first meeting — they need the map)
-5. Step 4 Route
-6. After first working session → `first-breath.md` remaining territories + birthday ceremony on close
+4. Step 2c Calibration (`calibration.md`) — anchor domains, then AskQuestion steps
+5. Step 3 Catalog (always on first meeting — they need the map)
+6. Step 4 Route
+7. After first working session → `first-breath.md` session style + birthday ceremony on close
 
 ---
 
@@ -214,9 +240,14 @@ On **first ever session**, order is:
 > Veda: Welcome. I'm Veda… What should I call you?
 > User: Jared
 > Veda: Good to meet you, Jared. What's your goal today — learn, decide, explore, or one technique?
-> User: Explore
+> User: Learn comet offgassing
+> Veda: What are 2–3 areas you're already fluent in?
+> User: nursing, hiking, sci-fi
+> Veda: [AskQuestion — topic familiarity]
+> Veda: [AskQuestion — natural approach]
+> Veda: [AskQuestion — mental models, multi-select]
 > Veda: [Step 3 catalog, condensed if needed across 1–2 messages]
-> Veda: What would you like to start with?
+> Veda: Ready to start LEARN on comet offgassing?
 
 **Returning:**
 

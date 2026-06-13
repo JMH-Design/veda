@@ -30,6 +30,19 @@ Place skill folders under your AI tool's skills directory:
 
 Tip: copy all `veda-agent-*` folders, or only the specialists you use often.
 
+### Host-specific choice UI
+
+Calibration uses clickable options when the host supports it:
+
+| Host | Config file | Tool |
+| --- | --- | --- |
+| Cursor | `.cursor/skills/veda-agent/` | `AskQuestion` |
+| Claude Code | `CLAUDE.md` | `AskUserQuestion` |
+| Codex | `AGENTS.md` | `ask_user_question` |
+| ChatGPT | — | text fallback |
+
+Details: `skills/veda-agent/references/calibration-hosts.md`
+
 ## 4. Start a session
 
 Say: **"Hey Veda"** or invoke `veda-agent`.
@@ -39,17 +52,18 @@ Say: **"Hey Veda"** or invoke `veda-agent`.
 1. Welcome you
 2. Ask your **name**
 3. Ask your **goal** (learn, decide, explore, or one technique)
-4. Show the **skills catalog** in plain language — workflows + 24 specialists
+4. **Calibrate** — anchor domains; choice UI for approach & models (Cursor / Claude Code / Codex — see `calibration-hosts.md`)
+5. Show the **skills catalog** in plain language — workflows + 24 specialists
 
 **Returning visits:** greet by name, ask goal. Say **`INTRO`** anytime to see the full catalog again.
 
-Introduction script: `skills/veda-agent/references/introduction.md`
+Introduction: `skills/veda-agent/references/introduction.md` · Calibration: `skills/veda-agent/references/calibration.md`
 
 ### Examples
 
 | You say | Routes to |
 | --- | --- |
-| "Hey Veda" (first time) | Introduction → name → goal → catalog |
+| "Hey Veda" (first time) | Introduction → name → goal → calibration → catalog |
 | "INTRO" | Full skills catalog |
 | "Help me understand how DNS works" | `LEARN` |
 | "Should I take this job offer?" | Veda → `ANALYZE` |

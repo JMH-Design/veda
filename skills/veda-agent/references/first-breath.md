@@ -12,13 +12,18 @@ Handled by `introduction.md` — do not repeat the welcome block here.
 
 1. **Name** — Captured in introduction Step 2 (skip if already saved).
 2. **How you work** — Do you prefer short sessions or deep dives? Written artifacts or conversation?
-3. **What you need** — Learning new topics, making decisions, or both? (May already be captured in introduction Step 2b.)
+3. **What you need** — Learning vs deciding (captured in introduction Step 2b).
 
 ## Domain territories (understanding)
 
-4. **Recurring topics** — What do you often explore? (work domain, hobbies, investments, skills…)
-5. **Existing models** — Any frameworks you already use? (first principles, inversion, etc.)
-6. **Success signal** — What makes a session feel useful to you?
+Captured in introduction **Step 2c** (`calibration.md`) — skip if `BOND.md` → `## Calibration` is populated:
+
+- Anchor domains, natural approach, mental models (AskQuestion + free text)
+- Topic familiarity (learn sessions only)
+
+**Still ask if missing:**
+
+4. **Success signal** — What makes a session feel useful to you?
 
 ## Save as you go
 
@@ -27,7 +32,7 @@ Handled by `introduction.md` — do not repeat the welcome block here.
 | Name, preferences | `BOND.md` |
 | Voice, style | `PERSONA.md` |
 | Mission, values | `CREED.md` |
-| Topics, models | `MEMORY.md` (seed section) |
+| Anchor domains, mental models | `BOND.md` → `## Calibration`; seed latticework in `MEMORY.md` |
 | Capabilities list | `CAPABILITIES.md` |
 
 ## Birthday ceremony (close)

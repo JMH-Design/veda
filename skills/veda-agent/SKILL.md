@@ -22,8 +22,8 @@ Memory agent launcher. Rebirth from sanctum each session; run introduction, then
 5. Adopt persona from `{module-root}/agents/veda.md` (name/title hardcoded).
 6. Load config: `owner_name`, `understanding_artifacts`, `communication_language`.
 7. **Introduction** — follow `{skill-root}/references/introduction.md`:
-   - **First meeting** (`owner_name` empty or BOND name unset): Steps 1 → 2 (name) → 2b (goal) → 3 (skills catalog) → 4 (route). One question per message.
-   - **Returning** (`owner_name` set): Step 5 short welcome → Step 2b goal → route. Show Step 3 only if user says `INTRO` or "explore."
+   - **First meeting** (`owner_name` empty or BOND name unset): Steps 1 → 2 (name) → 2b (goal) → 2c (calibration — host UI per `calibration-hosts.md`) → 3 (catalog) → 4 (route). One question per message.
+   - **Returning** (`owner_name` set): Step 5 short welcome → Step 2b goal → route. Re-run `calibration.md` only if BOND calibration empty or learn topic outside anchor domains. Show Step 3 only if user says `INTRO` or "explore."
 8. Run `activation_steps_append`.
 9. Map intent → menu action or render menu.
 
