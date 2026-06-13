@@ -19,7 +19,7 @@ On first meeting, Veda asks your **name**, your **goal**, and shows a **skills c
 ## Quick install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/veda.git
+git clone https://github.com/JMH-Design/veda.git
 cd veda
 chmod +x install.sh
 ./install.sh
