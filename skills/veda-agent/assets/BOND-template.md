@@ -1,5 +1,9 @@
 # BOND — {{OWNER_NAME}}
 
+## Voice
+
+Chosen: {{VOICE_CHOICE}}
+
 ## Calibration
 
 - Anchor domains: {{ANCHOR_DOMAINS}}

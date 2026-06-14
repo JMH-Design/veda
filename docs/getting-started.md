@@ -53,11 +53,12 @@ Say: **"Hey Veda"** or invoke `veda-agent`.
 
 1. Welcome you
 2. Ask your **name**
-3. Ask your **goal** (learn, decide, explore, or one technique)
-4. **Calibrate** — anchor domains; choice UI for approach & models (Cursor / Claude Code / Codex — see `calibration-hosts.md`)
-5. Show the **skills catalog** in plain language — workflows + 24 specialists
+3. Ask your **voice** — Tutor, Scientist, Sparring Partner, or Explorer (`VOICE` anytime to switch)
+4. Ask your **goal** (learn, decide, explore, or one technique)
+5. **Calibrate** — anchor domains; choice UI for approach & models (learn only)
+6. Show the **skills catalog** in plain language — workflows + 24 specialists
 
-**Returning visits:** greet by name, ask goal. Say **`INTRO`** anytime to see the full catalog again.
+**Returning visits:** greet by name, offer to keep or change voice, ask goal. Say **`INTRO`** for catalog, **`VOICE`** to switch tone.
 
 Introduction: `skills/veda-agent/references/introduction.md` · Calibration: `skills/veda-agent/references/calibration.md`
 
@@ -65,7 +66,8 @@ Introduction: `skills/veda-agent/references/introduction.md` · Calibration: `sk
 
 | You say | Routes to |
 | --- | --- |
-| "Hey Veda" (first time) | Introduction → name → goal → calibration → catalog |
+| "Hey Veda" (first time) | Introduction → name → voice → goal → calibration → catalog |
+| "VOICE" | Voice picker — Tutor / Scientist / Sparring Partner / Explorer |
 | "INTRO" | Full skills catalog |
 | "Help me understand how DNS works" | `LEARN` |
 | "Should I take this job offer?" | Veda → `ANALYZE` |

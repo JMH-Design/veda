@@ -9,10 +9,10 @@ Veda calibration uses **host-native choice tools** when available. Shared steps 
 | **Cursor** (Agent) | `AskQuestion` | `calibration-cursor.md` | `.cursor/skills/veda-agent/` |
 | **Claude Code** (VS Code / CLI) | `AskUserQuestion` | `calibration-claude-code.md` | `CLAUDE.md` |
 | **Codex** (CLI / VS Code) | `ask_user_question` | `calibration-codex.md` | `AGENTS.md` |
-| **ChatGPT** (web / desktop) | *(none for custom skills)* | — | numbered-list fallback in `calibration.md` |
+| **ChatGPT** (web / desktop) | *(none for custom skills)* | — | numbered-list fallback in `calibration.md` / `voices.md` |
 | **Unknown / no tool** | — | — | `calibration.md` → Fallback |
 
-**On session open:** detect host from environment, then load the matching host file for Steps B–D. Always use free text for Step A (anchor domains).
+**On session open:** detect host from environment, then load the matching host file for calibration Steps B–D and voice Step 2a (`voices.md`). Always use free text for calibration Step A (anchor domains).
 
 ## Rules (all hosts)
 

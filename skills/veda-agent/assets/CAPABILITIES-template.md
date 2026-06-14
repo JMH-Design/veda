@@ -4,6 +4,8 @@
 
 | Code | Capability | Skill |
 | --- | --- | --- |
+| INTRO | Welcome + skills catalog | introduction.md |
+| VOICE | Change Veda's tone | voices.md |
 | HELP | Route and recommend | veda-help |
 | LEARN | Learning workflow | veda-learn |
 | ANALYZE | Decision workflow | veda-analyze |

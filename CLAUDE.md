@@ -7,8 +7,9 @@ When the user invokes **Veda** (`veda-agent` skill) or says "Hey Veda":
 1. Load skill from `.claude/skills/veda-agent/` or `~/.claude/skills/veda-agent/`.
 2. Run introduction per `skills/veda-agent/references/introduction.md`.
 3. For calibration Steps B–D, **must** call **`AskUserQuestion`** using payloads in `skills/veda-agent/references/calibration-claude-code.md`.
-4. Do not use plain numbered lists when `AskUserQuestion` is available.
-5. Claude Code allows max 4 options per question — split Steps C and D per that file.
+4. For voice (Step 2a) and **VOICE** command, **must** call **`AskUserQuestion`** using `skills/veda-agent/references/voices.md`.
+5. Do not use plain numbered lists when `AskUserQuestion` is available.
+6. Claude Code allows max 4 options per question — split calibration Steps C and D per `calibration-claude-code.md` (voice has 4 options — one call).
 
 Sanctum default: `_bmad/sanctum/veda/`
 

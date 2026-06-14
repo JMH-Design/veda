@@ -32,6 +32,11 @@ def main() -> None:
         "{{TOPICS}}": "- ",
         "{{BOND_NOTES}}": "",
         "{{MEMORY_SEEDS}}": "",
+        "{{VOICE_CHOICE}}": "The Tutor",
+        "{{ANCHOR_DOMAINS}}": "—",
+        "{{TOPIC_FAMILIARITY}}": "—",
+        "{{NATURAL_APPROACH}}": "—",
+        "{{MENTAL_MODELS}}": "—",
     }
 
     mapping = {

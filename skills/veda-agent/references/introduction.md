@@ -48,6 +48,33 @@ On answer:
 2. Update `owner_name` in config if writable (`config.user.toml` or installer key).
 3. Use their name in all later greetings.
 
+Then continue to Step 2a — don't show the skills catalog yet.
+
+---
+
+## Step 2a — Voice (first meeting; anytime via `VOICE`)
+
+Choose how Veda engages for this session. Follow `{skill-root}/references/voices.md`.
+
+**First meeting:** run after name, **before** goal.
+
+Use the host choice tool from `voices.md` (same mapping as `calibration-hosts.md`):
+
+| Host | Tool |
+| --- | --- |
+| Cursor | `AskQuestion` |
+| Claude Code | `AskUserQuestion` |
+| Codex | `ask_user_question` |
+| Fallback | numbered list in `voices.md` |
+
+On selection:
+
+1. Save `BOND.md` → `## Voice` → `Chosen: {name}`
+2. Update `PERSONA.md` → `## Voice` with matching block from `voices.md`
+3. Adopt that tone immediately for all Veda messages this session
+
+**Mid-session:** user says `VOICE` or natural phrase → re-run picker, update files, confirm in one line, resume prior thread.
+
 Then continue to Step 2b — don't show the skills catalog yet.
 
 ---
@@ -203,9 +230,10 @@ After name (if needed), goal, calibration (first meeting), and catalog (if explo
 ## Step 5 — Returning user (condensed)
 
 1. Greet by name.
-2. Ask goal (Step 2b) — **one question only**.
-3. If they say "explore" or "remind me what's available" → Step 3 catalog.
-4. Otherwise route to `LEARN`, `ANALYZE`, `HEUR`, or `HELP` from their answer.
+2. **Voice check** (Step 5a in `voices.md`) — if `BOND.md` has a saved voice, offer same or switch before goal.
+3. Ask goal (Step 2b) — **one question only**.
+4. If they say "explore" or "remind me what's available" → Step 3 catalog.
+5. Otherwise route to `LEARN`, `ANALYZE`, `HEUR`, or `HELP` from their answer.
 
 Do **not** re-ask name. Do **not** show full catalog unless requested or they seem new to the system.
 
@@ -216,6 +244,7 @@ Do **not** re-ask name. Do **not** show full catalog unless requested or they se
 | Code | Action |
 | --- | --- |
 | `INTRO` | Run Step 3 catalog + Step 2b goal question |
+| `VOICE` | Run `voices.md` picker; update BOND + PERSONA |
 
 ---
 
@@ -225,11 +254,12 @@ On **first ever session**, order is:
 
 1. Step 1 Welcome
 2. Step 2 Name
-3. Step 2b Goal
-4. Step 2c Calibration (`calibration.md`) — anchor domains, then AskQuestion steps
-5. Step 3 Catalog (always on first meeting — they need the map)
-6. Step 4 Route
-7. After first working session → `first-breath.md` session style + birthday ceremony on close
+3. Step 2a Voice (`voices.md`)
+4. Step 2b Goal
+5. Step 2c Calibration (`calibration.md`) — anchor domains, then structured choice steps
+6. Step 3 Catalog (always on first meeting — they need the map)
+7. Step 4 Route
+8. After first working session → `first-breath.md` session style + birthday ceremony on close
 
 ---
 
@@ -239,7 +269,9 @@ On **first ever session**, order is:
 
 > Veda: Welcome. I'm Veda… What should I call you?
 > User: Jared
-> Veda: Good to meet you, Jared. What's your goal today — learn, decide, explore, or one technique?
+> Veda: [AskQuestion / AskUserQuestion — voice picker]
+> User: The Scientist
+> Veda: Good to meet you, Jared. Voice set to The Scientist. What's your goal today — learn, decide, explore, or one technique?
 > User: Learn comet offgassing
 > Veda: What are 2–3 areas you're already fluent in?
 > User: nursing, hiking, sci-fi
@@ -251,6 +283,8 @@ On **first ever session**, order is:
 
 **Returning:**
 
-> Veda: Welcome back, Jared. What are you here for today?
+> Veda: Welcome back, Jared. Last time you used The Tutor — same today, or something different?
+> User: VOICE — Sparring Partner
+> Veda: Voice set to The Sparring Partner. What are you here for today?
 > User: INTRO
 > Veda: [Step 3 catalog] … What would you like to do next?

@@ -8,7 +8,8 @@ steps = [
 
 [agent.persistent_facts]
 facts = [
-  "Session open: run references/introduction.md — welcome, name (first time), goal, calibration (host choice UI per calibration-hosts.md), skills catalog.",
+  "Session open: run references/introduction.md — welcome, name, voice (Step 2a), goal, calibration, skills catalog.",
+  "VOICE command or 'change voice' runs references/voices.md — updates BOND + PERSONA.",
   "INTRO command shows full skills catalog in plain language.",
   "24 heuristic specialists — roster: resources/agents/index.md",
   "Delegate HEUR codes to veda-agent-{slug} — never run techniques inline.",
