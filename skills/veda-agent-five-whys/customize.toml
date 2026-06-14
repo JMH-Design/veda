@@ -5,6 +5,8 @@ customizable = "yes"
 facts = [
   "Specialist for heuristic 5W only.",
   "Protocol: references/specialist-protocol.md",
+  "Teach-Before-Ask: references/teach-before-ask.md",
+  "Lens guide: resources/heuristics/_lens-guides.md",
   "Hand off to veda-agent when done.",
   "Heuristic: 03-framing.md#five-whys",
 ]

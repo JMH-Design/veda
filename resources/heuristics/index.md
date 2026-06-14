@@ -59,7 +59,9 @@ Full specialist roster: [`../agents/index.md`](../agents/index.md)
 
 1. User picks a code (or describes the technique).
 2. Veda routes via `veda-heuristic` to the dedicated specialist (`veda-agent-{slug}`).
-3. Specialist loads heuristic content and applies **Apply now** prompts.
+3. Specialist runs **Teach-Before-Ask** — lens brief, insight probe, adaptive dialogue (`references/teach-before-ask.md`).
 4. Results written to `{understanding_artifacts}/{topic}.md`.
+
+Lens guides: `_lens-guides.md`
 
 **Direct invoke:** call `veda-agent-{slug}` without Veda — see Specialist column and [`../agents/index.md`](../agents/index.md).

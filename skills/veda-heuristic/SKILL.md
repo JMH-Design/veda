@@ -13,19 +13,22 @@ owner: veda
 
 Resolve a heuristic **code** to its **dedicated specialist agent** and delegate. Each technique has its own stateless agent with a distinct persona. See `{module-root}/resources/agents/index.md`.
 
+Specialists run **Teach-Before-Ask** (`{module-root}/references/teach-before-ask.md`) — not opening with Apply now recall questions.
+
 ## Input
 
 - **Code** (required): e.g. `FP`, `ANA`, `RC`, `5W` — see `index.md`
 - **Context** (required): topic, decision, or pasted text
 - **Artifact path** (optional): defaults to active session file
+- **Calibration** (optional): from `BOND.md` — anchor domains, topic familiarity, mental models
 
 ## Steps
 
 1. Resolve code → specialist skill via `{module-root}/resources/agents/index.md` or `registry.yaml`.
 2. Confirm delegation: "Routing to {icon} {name} ({title}) for {code}."
-3. Pass context: topic, artifact path, any prior session notes.
+3. Pass context: topic, artifact path, calibration from `BOND.md`, prior session notes, planned sequence if any.
 4. **Invoke specialist skill** (e.g. `veda-agent-first-principles`) — do not run heuristic inline.
-5. Specialist writes artifact section and hands back to Veda on complete.
+5. Specialist delivers lens brief → insight probe → dialogue; writes artifact section and hands back to Veda on complete.
 
 ## Code → specialist map
 
@@ -41,8 +44,8 @@ Invalid code → show roster from `resources/agents/index.md`, ask again.
 
 ## Output
 
-Specialist-owned artifact section. User returns to Veda for next routing.
+Specialist-owned artifact section (Lens brief, Insight probe, Dialogue, Insights). User returns to Veda for next routing.
 
 ## Fallback
 
-If specialist skill unavailable, load heuristic from `resources/heuristics/` and apply per `references/specialist-protocol.md` — then note degradation in chat.
+If specialist skill unavailable, load heuristic from `resources/heuristics/` and apply per `references/specialist-protocol.md` + `references/teach-before-ask.md` — then note degradation in chat.

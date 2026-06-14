@@ -12,6 +12,14 @@
 
 ---
 
+## Topic primer
+
+*(Veda — once per Learn session, before first heuristic. Skip if user supplied source material.)*
+
+{{topic_primer}}
+
+---
+
 ## 1. Foundations
 
 ### First principles
@@ -29,6 +37,14 @@
 ### Key drivers (Pareto)
 
 *The 20% that drives 80%:*
+
+#### Lens brief
+
+#### Insight probe
+
+#### Dialogue
+
+#### Insights
 
 {{key_drivers}}
 
@@ -63,6 +79,14 @@
 ### Reference class
 
 *What usually happens in cases like this?*
+
+#### Lens brief
+
+#### Insight probe
+
+#### Dialogue
+
+#### Insights
 
 {{reference_class}}
 

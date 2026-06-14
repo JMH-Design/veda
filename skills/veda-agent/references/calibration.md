@@ -69,6 +69,8 @@ If topic not yet stated, ask for topic first in one line, then Step B.
 
 Save to `BOND.md` → `Topic familiarity:` (use label text, not id).
 
+**Teaching use:** Familiarity calibrates **lens brief length** and **insight probe difficulty** in Learn mode. It does **not** skip the brief — even Practitioner gets a minimal teach-before-ask beat. See `references/teach-before-ask.md`.
+
 ---
 
 ## Step C — Natural approach (multiple choice)
@@ -148,7 +150,8 @@ When delegating to `veda-agent-*`, pass in session context:
 
 - Read `BOND.md` → `## Calibration`
 - Ground **all examples and analogies** in anchor domains
-- Match explanation depth to topic familiarity (learn sessions)
+- **Topic familiarity** → brief length + probe difficulty (never skip lens brief on Learn)
+- Run **Teach-Before-Ask** per `references/teach-before-ask.md` before Apply now pool
 - Prefer routing aligned with natural approach when user didn't pick a technique
 - Link new insights to listed mental models in `LAT` and artifact prose
 

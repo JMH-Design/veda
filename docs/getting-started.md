@@ -62,6 +62,10 @@ Say: **"Hey Veda"** or invoke `veda-agent`.
 
 Introduction: `skills/veda-agent/references/introduction.md` · Calibration: `skills/veda-agent/references/calibration.md`
 
+### Teach-Before-Ask (Learn mode)
+
+Specialists **teach before they quiz**: a short **lens brief** on your topic through that technique, then one **insight probe** you can't answer from the brief alone, then adaptive dialogue. Topic familiarity calibrates brief length — it never skips teaching. Protocol: `references/teach-before-ask.md` · Lens guides: `resources/heuristics/_lens-guides.md`
+
 ### Examples
 
 | You say | Routes to |

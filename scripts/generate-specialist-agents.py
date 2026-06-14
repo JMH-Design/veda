@@ -20,6 +20,7 @@ REGISTRY = ROOT / "resources/agents/registry.yaml"
 SPECIALISTS_DIR = ROOT / "agents/specialists"
 SKILLS_DIR = ROOT / "skills"
 PROTOCOL_SRC = ROOT / "references/specialist-protocol.md"
+TEACH_SRC = ROOT / "references/teach-before-ask.md"
 
 
 def load_registry() -> list[dict]:
@@ -50,6 +51,7 @@ def persona_md(entry: dict) -> str:
             {entry['style'].strip()}
           principles:
             - Own exactly one technique: {code} ({entry['slug'].replace('-', ' ')}).
+            - Teach through lens before probing; insight question before recall questions.
             - One question at a time; curiosity beats certainty.
             - Write insights to the active artifact; hand off to Veda when done.
             - Never fake memory — stateless rebirth each session.
@@ -105,11 +107,13 @@ def skill_md(entry: dict) -> str:
 
         1. Load persona: `{{module-root}}/agents/specialists/{slug}.md`
         2. Load heuristic: `{{module-root}}/resources/heuristics/{entry['heuristic_file']}#{entry['anchor']}`
-        3. Load protocol: `{{module-root}}/references/specialist-protocol.md`
-        4. Resolve `understanding_artifacts` and `communication_language` from config.
-        5. Greet as {entry['icon']} **{entry['name']}** — embody {entry['title']}. One sentence on your technique.
-        6. Ask what topic or decision to apply {code} to (unless context already provided by Veda).
-        7. Run **Apply now** questions one at a time per protocol; write to artifact.{sanctum_note}
+        3. Load lens guide: `{{module-root}}/resources/heuristics/_lens-guides.md` (section for {code})
+        4. Load protocol: `{{module-root}}/references/specialist-protocol.md`
+        5. Load teach-before-ask: `{{module-root}}/references/teach-before-ask.md`
+        6. Resolve `understanding_artifacts` and `communication_language` from config.
+        7. Greet as {entry['icon']} **{entry['name']}** — embody {entry['title']}. One sentence on your technique.
+        8. Ask what topic or decision to apply {code} to (unless context already provided by Veda).
+        9. Run **Teach-Before-Ask**: lens brief → insight probe → adaptive dialogue; write to artifact.{sanctum_note}
 
         ## Menu
 
@@ -136,6 +140,8 @@ def customize_toml(entry: dict) -> str:
         facts = [
           "Specialist for heuristic {entry['code']} only.",
           "Protocol: references/specialist-protocol.md",
+          "Teach-Before-Ask: references/teach-before-ask.md",
+          "Lens guide: resources/heuristics/_lens-guides.md",
           "Hand off to veda-agent when done.",
           "Heuristic: {entry['heuristic_file']}#{entry['anchor']}",
         ]
@@ -167,6 +173,9 @@ def main() -> None:
         protocol_dst = refs / "protocol.md"
         if PROTOCOL_SRC.exists():
             protocol_dst.write_text(PROTOCOL_SRC.read_text())
+        teach_dst = refs / "teach-before-ask.md"
+        if TEACH_SRC.exists():
+            teach_dst.write_text(TEACH_SRC.read_text())
 
     print(f"Generated {len(entries)} specialist agents in {SPECIALISTS_DIR}")
     print(f"Generated {len(entries)} skill folders in {SKILLS_DIR}")

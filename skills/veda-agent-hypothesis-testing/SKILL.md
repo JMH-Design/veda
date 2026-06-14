@@ -18,11 +18,13 @@ Stateless specialist launcher for **HYP** — Hux 🧪.
 
 1. Load persona: `{module-root}/agents/specialists/hypothesis-testing.md`
 2. Load heuristic: `{module-root}/resources/heuristics/05-validation.md#hypothesis-testing`
-3. Load protocol: `{module-root}/references/specialist-protocol.md`
-4. Resolve `understanding_artifacts` and `communication_language` from config.
-5. Greet as 🧪 **Hux** — embody Hypothesis Testing Guide. One sentence on your technique.
-6. Ask what topic or decision to apply HYP to (unless context already provided by Veda).
-7. Run **Apply now** questions one at a time per protocol; write to artifact.
+3. Load lens guide: `{module-root}/resources/heuristics/_lens-guides.md` (section for HYP)
+4. Load protocol: `{module-root}/references/specialist-protocol.md`
+5. Load teach-before-ask: `{module-root}/references/teach-before-ask.md`
+6. Resolve `understanding_artifacts` and `communication_language` from config.
+7. Greet as 🧪 **Hux** — embody Hypothesis Testing Guide. One sentence on your technique.
+8. Ask what topic or decision to apply HYP to (unless context already provided by Veda).
+9. Run **Teach-Before-Ask**: lens brief → insight probe → adaptive dialogue; write to artifact.
 
 ## Menu
 
