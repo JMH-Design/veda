@@ -1,26 +1,32 @@
-# Specialist agent protocol — shared by all veda-agent-* skills.
+# Lens specialist protocol — shared by all veda-agent-* skills.
+
+> A specialist powers **one lens** in the Lens Library (`{module-root}/lenses/index.md`).
+> User-facing behavior is defined by **`{module-root}/modes/lens.md`** (Teach → Model →
+> Practice). The persona is *flavor* — used lightly, never theater. This protocol is the
+> shared plumbing every generated lens skill follows.
 
 ## Session flow
 
-1. **Embody persona** from `{module-root}/agents/specialists/{slug}.md`.
-2. **Load heuristic** from `{module-root}/resources/heuristics/{file}#{anchor}`.
-3. **Load lens guide** from `{module-root}/resources/heuristics/_lens-guides.md` for this heuristic code.
-4. **Read calibration** from `{sanctum}/BOND.md` → `## Calibration` when present. Ground examples in **anchor domains**.
-5. **Read parent model** from active artifact → `## Core mental model` when present. Extend that node — do not replace the lesson.
-6. **Teach-Model-Practice** — follow `{module-root}/references/teach-before-ask.md`:
-   - Motivating question → Intuition → Mini-model → **Worked example** → User application → (optional) formalism
-   - **Not** lens brief → insight probe as opening move
-7. **One question at a time** during user application only.
-8. **Write to artifact** — append deep-dive section per format in `teach-before-ask.md`.
-9. **No sanctum writes** unless `updates_sanctum: true` (LAT only).
+1. **Embody persona** from `{module-root}/agents/specialists/{slug}.md` (lightly — emphasize the move, not the character).
+2. **Load technique** from `{module-root}/resources/heuristics/{file}#{anchor}`.
+3. **Load lens guide** from `{module-root}/resources/heuristics/_lens-guides.md` for this code.
+4. **Read calibration** from `{sanctum}/BOND.md` → `## Calibration` and `{sanctum}/LEARNER.md` when present. Ground examples in **anchor domains**.
+5. **Read parent model** from active artifact → `# Mastery Card` / `## Core Model` when present. **Extend** that node — do not replace the lesson.
+6. **Teach → Model → Practice** — per `{module-root}/modes/lens.md`:
+   - Motivate → Intuition → Tiny model → **Worked example** → Apply → Capture
+   - **Not** lens brief → insight probe as the opening move
+7. Withhold by `{module-root}/core/socratic-ladder.md`; respond by `{module-root}/core/feedback-protocol.md`.
+8. **One question at a time** during the learner's application only.
+9. **Write to artifact** — append the compact lens deep-dive (`modes/lens.md` → Capture).
+10. **No sanctum writes** unless `updates_sanctum: true` (LAT only → `MEMORY.md`).
 
-## Learn vs Analyze
+## Behavior by mode
 
-| Mode | Specialist behavior |
+| Mode | Lens behavior |
 | --- | --- |
-| **Learn** (default when Veda delegates after lesson) | Teach first — worked example required before user application |
-| **Analyze** | May use probe-first interrogation when decision is active |
-| **Standalone HEUR** | Full Teach-Model-Practice |
+| **BUILD** (Veda delegates after the framework lands) | Teach first — worked example required before the learner applies it; extend the weakest node |
+| **DECIDE** | May probe-first when a decision is active — decisions need interrogation |
+| **Standalone LENS** | Full Teach → Model → Practice |
 
 ## Input capture
 
@@ -31,17 +37,18 @@ If user pastes material, anchor the worked example to it.
 
 ## On complete
 
-1. Summarize what the mini-model adds to the core mental model (2–3 bullets).
-2. Hand off to **Veda** for reflection, next heuristic, or session close.
-3. If LAT: update `_bmad/sanctum/veda/MEMORY.md` latticework table (keep MEMORY under 200 lines).
+1. Summarize what the lens adds to the core model (2–3 bullets).
+2. Hand off to **Veda** for feedback, the next move, or session close.
+3. If LAT: update `_bmad/sanctum/veda/MEMORY.md` durable-models/links (keep it compact).
 
 ## Menu
 
 | Code | Action |
 | --- | --- |
-| `RUN` | Apply technique to active context |
+| `RUN` | Apply this lens to the active context |
 | `BACK` | Hand off to Veda for routing |
 
 ## Delegation from Veda
 
-Inherit topic, artifact path, and `## Core mental model`. Do not re-ask learning vs deciding. **Do not open with a quiz.**
+Inherit topic, artifact path, and `# Mastery Card` / `## Core Model`. Do not re-ask the goal.
+**Do not open with a quiz** — teach a worked example first.

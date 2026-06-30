@@ -18,11 +18,12 @@ Or invoke `veda-agent` — Veda will guide First Breath on first run.
 
 Place skill folders under your AI tool's skills directory:
 
-**Orchestrator & workflows:**
+**Orchestrator & modes:**
 - `veda-agent`
-- `veda-learn`, `veda-analyze`, `veda-heuristic`, `veda-help`
+- `veda-build`, `veda-practice`, `veda-debug`, `veda-decide`, `veda-lens`, `veda-next`
+- (legacy aliases, still work: `veda-learn`, `veda-analyze`, `veda-heuristic`, `veda-help`)
 
-**Specialists (24 agents — one per heuristic):**
+**Lenses (24 stateless specialists — one per thinking move):**
 - `veda-agent-first-principles` (Petra 🪨)
 - `veda-agent-analogical-reasoning` (Anya 🌉)
 - `veda-agent-reference-class` (Clio 📊)
@@ -62,52 +63,61 @@ Say: **"Hey Veda"** or invoke `veda-agent`.
 
 Introduction: `skills/veda-agent/references/introduction.md` · Calibration: `skills/veda-agent/references/calibration.md`
 
-### Learn mode pedagogy
+### How Veda teaches
 
-Learn sessions follow the **seven-phase lesson** in [`references/lesson-structure.md`](../references/lesson-structure.md): curiosity → prior model → one framework → examples → retrieval → practice → reflection. Heuristics deepen **after** practice — not as a default chain.
+Veda diagnoses what you need, then runs the **Tutor Loop** through one **mode**. It teaches a
+model, shows it on an example, makes you **retrieve** and **transfer** it, gives sharp feedback,
+and captures only durable value.
 
-Specialists use **Teach-Model-Practice** ([`references/teach-before-ask.md`](../references/teach-before-ask.md)): motivating question → intuition → mini-model → worked example → user application.
+- **BUILD** sessions follow the **seven-phase lesson** ([`core/lesson-structure.md`](../core/lesson-structure.md)):
+  curiosity → prior model → one framework → examples → retrieval → practice → reflection, ending
+  with a **Mastery Card**. Lenses deepen **after** practice — never a default chain.
+- Withholding follows the **Socratic Ladder** ([`core/socratic-ladder.md`](../core/socratic-ladder.md)) —
+  guide when it helps, answer when it doesn't.
+- Lenses run **Teach → Model → Practice** ([`modes/lens.md`](../modes/lens.md)).
 
-**Full system map:** [`docs/system-overview.md`](system-overview.md)
+**Full system map:** [`docs/system-overview.md`](system-overview.md) · **Why it's shaped this way:** [`docs/architecture.md`](architecture.md)
 
 ### Examples
 
-| You say | Routes to |
+| You say | Mode |
 | --- | --- |
 | "Hey Veda" (first time) | Introduction → name → voice → goal → calibration → catalog |
 | "VOICE" | Voice picker — Tutor / Scientist / Sparring Partner / Explorer |
-| "INTRO" | Full skills catalog |
-| "Help me understand how DNS works" | `LEARN` |
-| "Should I take this job offer?" | Veda → `ANALYZE` |
-| "Run inversion on my launch plan" | Veda → `HEUR` → Iris (`veda-agent-inversion`) |
-| "Talk to Petra about AI architecture" | `veda-agent-first-principles` directly |
-| "What's next?" | Veda → `HELP` |
+| "Help me understand how DNS works" | `BUILD` |
+| "I get the idea but it's fuzzy — quiz me" | `PRACTICE` |
+| "I'm confused why X causes Y" | `DEBUG` |
+| "Should I take this job offer?" | `DECIDE` |
+| "Run inversion on my launch plan" | `LENS` → Iris (`veda-agent-inversion`) |
+| "What's next?" | `NEXT` |
 
-## 5. Two ways to use a heuristic
+## 5. Two ways to use a lens
 
-1. **Through Veda** — say "Run FP" and she delegates to Petra.
-2. **Direct specialist** — invoke `veda-agent-first-principles` for a focused session.
+1. **Through Veda** — say "Run FP" and it brings in the First Principles lens.
+2. **Direct** — invoke `veda-agent-first-principles` for a focused lens session.
 
-Specialists are stateless (fresh each time). Veda holds memory and latticework.
+Lenses are stateless (fresh each time). Veda holds the learner state and latticework.
 
 ## 6. Artifacts
 
 Outputs land in `docs/understanding/` by default:
 
-- `{topic}.md` — Learning Notes or Decision Memo
-- Configure path via `understanding_artifacts` in module config
+- `topics/{topic}.md` — learning artifact (opens with a Mastery Card)
+- `decisions/{decision}.md` — decision memo
+- `practice/{topic}-practice.md` — practice log
+- Configure the base path via `understanding_artifacts` in module config
 
-## 7. Specialist cheat sheet
+## 7. Lens cheat sheet
 
-| Code | Agent | Skill |
+| Code | Lens | Skill |
 | --- | --- | --- |
-| `FP` | 🪨 Petra | `veda-agent-first-principles` |
-| `ANA` | 🌉 Anya | `veda-agent-analogical-reasoning` |
-| `RC` | 📊 Clio | `veda-agent-reference-class` |
-| `INV` | 🔄 Iris | `veda-agent-inversion` |
-| `LAT` | 🔗 Lia | `veda-agent-latticework` |
+| `FP` | First Principles 🪨 | `veda-agent-first-principles` |
+| `RC` | Reference Class 📊 | `veda-agent-reference-class` |
+| `INV` | Inversion 🔄 | `veda-agent-inversion` |
+| `SN` | Signal vs Noise 📡 | `veda-agent-signal-noise` |
+| `LAT` | Latticework 🔗 | `veda-agent-latticework` |
 
-Full roster: [`resources/agents/index.md`](../resources/agents/index.md).
+Full library: [`lenses/index.md`](../lenses/index.md).
 
 ## Source material
 

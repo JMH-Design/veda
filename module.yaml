@@ -1,14 +1,15 @@
 # Veda — module manifest
-# Veda: memory orchestrator. 24 stateless heuristic specialists.
+# Veda: a learner-state-centered mentor. Tutor Loop + modes + a 24-lens library.
 
 code: veda
 name: Veda
 short: Understanding
-version: 1.1.0
+version: 2.0.0
 description: >
-  Deep understanding through mental models and heuristics. Veda remembers your
-  latticework and routes to dedicated specialists — one agent per thinking
-  technique — producing artifacts in docs/understanding/.
+  A warm, rigorous mentor that teaches you to think. Veda models the learner's state,
+  diagnoses what they need, and runs the Tutor Loop through one mode (BUILD, PRACTICE,
+  DEBUG, DECIDE, LENS, NEXT, REVIEW) — building durable mental models, correcting
+  misconceptions, and preserving understanding in docs/understanding/.
 
 install:
   - key: understanding_artifacts
@@ -279,24 +280,88 @@ agents:
     heuristic_code: PRED
     skill: veda-agent-prediction-tracking
 
+# Modes — teaching moves (the Tutor Loop applied). core/ holds canonical protocols.
+modes:
+  - code: BUILD
+    skill: veda-build
+    spec: modes/build.md
+    produces: learning-artifact.md
+    was: LEARN
+  - code: PRACTICE
+    skill: veda-practice
+    spec: modes/practice.md
+    produces: practice-log.md
+  - code: DEBUG
+    skill: veda-debug
+    spec: modes/debug.md
+  - code: DECIDE
+    skill: veda-decide
+    spec: modes/decide.md
+    produces: decision-memo.md
+    was: ANALYZE
+  - code: LENS
+    skill: veda-lens
+    spec: modes/lens.md
+    was: HEUR
+  - code: NEXT
+    skill: veda-next
+    spec: modes/next.md
+    was: HELP
+  - code: REVIEW
+    skill: veda-next
+    spec: modes/review.md
+
+core:
+  - tutor-loop.md
+  - lesson-structure.md
+  - feedback-protocol.md
+  - socratic-ladder.md
+  - memory-guidance.md
+  - voice.md
+
 tools:
-  - skill: veda-help
+  - skill: veda-next
     type: task
     owner: veda
-    purpose: "Inspect session state, recommend next workflow or specialist."
+    purpose: "Inspect learner state, recommend the next move (+ REVIEW). Formerly veda-help."
+  - skill: veda-build
+    type: workflow
+    owner: veda
+    purpose: "BUILD — seven-phase lesson → learning artifact (Mastery Card)."
+  - skill: veda-practice
+    type: workflow
+    owner: veda
+    purpose: "PRACTICE — retrieval + transfer reps → practice log."
+  - skill: veda-debug
+    type: workflow
+    owner: veda
+    purpose: "DEBUG — find and repair the reasoning break → Misconception Ledger."
+  - skill: veda-decide
+    type: workflow
+    owner: veda
+    purpose: "DECIDE — decision/tradeoff → Decision Memo."
+  - skill: veda-lens
+    type: workflow
+    owner: veda
+    purpose: "LENS — apply one thinking lens via a stateless specialist (Teach→Model→Practice)."
+  - skill: veda-lenses
+    type: reference
+    owner: veda
+    purpose: "Lens Library at lenses/index.md; skills veda-agent-{slug}."
+  # Legacy aliases (still functional)
   - skill: veda-learn
     type: workflow
     owner: veda
-    purpose: "Guided learning path → Learning Notes artifact."
+    purpose: "Alias → veda-build (LEARN→BUILD)."
   - skill: veda-analyze
     type: workflow
     owner: veda
-    purpose: "Guided analysis path → Decision Memo artifact."
+    purpose: "Alias → veda-decide (ANALYZE→DECIDE)."
   - skill: veda-heuristic
     type: workflow
     owner: veda
-    purpose: "Route heuristic code to dedicated specialist agent."
-  - skill: veda-agent-specialists
-    type: reference
+    purpose: "Alias → veda-lens (HEUR→LENS)."
+  - skill: veda-help
+    type: task
     owner: veda
-    purpose: "Roster at resources/agents/index.md; skills veda-agent-{slug}."
+    purpose: "Alias → veda-next (HELP→NEXT)."

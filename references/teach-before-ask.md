@@ -1,8 +1,14 @@
-# Teach-Before-Ask — specialist learning protocol
+# Teach → Model → Practice — lens teaching protocol
 
-Used by `veda-agent-*` specialists when **delegated after the core lesson** or for **standalone technique sessions**.
+> **Canonical home:** `{module-root}/modes/lens.md`. This file is the detailed plumbing the
+> generated `veda-agent-*` lens skills follow. Withholding: `{module-root}/core/socratic-ladder.md`.
+> Feedback: `{module-root}/core/feedback-protocol.md`.
 
-**Primary Learn pedagogy:** `{module-root}/references/lesson-structure.md` — Veda owns the seven-phase lesson; specialists extend one node.
+Used by `veda-agent-*` specialists (lenses) when **delegated after the core framework lands**
+(BUILD) or for **standalone LENS sessions**.
+
+**Primary BUILD pedagogy:** `{module-root}/core/lesson-structure.md` — Veda owns the
+seven-phase lesson; a lens extends one node.
 
 **Load with:** `{module-root}/resources/heuristics/_lens-guides.md`
 
@@ -51,7 +57,7 @@ Motivating question → Intuition → Mini-model → Worked example → User app
 2. Mini-model (3–5 nodes or bullets)
 3. One **worked example** through the model (even abbreviated)
 4. Tie to anchor domains from `BOND.md`
-5. Link to parent **core mental model** when Veda passed one
+5. Link to the parent **core model** (Mastery Card → `## Core Model`) when Veda passed one
 
 **Must not:**
 
@@ -135,7 +141,7 @@ Old primer bullets are only ok **inside** the framework phase as supporting cont
 When Veda routes via `veda-heuristic`, pass:
 
 - Topic + artifact path
-- `## Core mental model` from artifact (required if exists)
+- `# Mastery Card` / `## Core Model` from artifact (required if exists)
 - `BOND.md` → Calibration
 - Which framework **node** to deepen
 

@@ -1,160 +1,138 @@
-# Teach-Before-Ask — specialist learning protocol
+# Teach → Model → Practice — lens teaching protocol
 
-Used by all `veda-agent-*` specialists in **Learn** mode (and when user is exploring a topic). Replaces opening with raw **Apply now** recall questions.
+> **Canonical home:** `{module-root}/modes/lens.md`. This file is the detailed plumbing the
+> generated `veda-agent-*` lens skills follow. Withholding: `{module-root}/core/socratic-ladder.md`.
+> Feedback: `{module-root}/core/feedback-protocol.md`.
 
-**Load with:** `{module-root}/resources/heuristics/_lens-guides.md` for technique-specific teaching anchors.
+Used by `veda-agent-*` specialists (lenses) when **delegated after the core framework lands**
+(BUILD) or for **standalone LENS sessions**.
+
+**Primary BUILD pedagogy:** `{module-root}/core/lesson-structure.md` — Veda owns the
+seven-phase lesson; a lens extends one node.
+
+**Load with:** `{module-root}/resources/heuristics/_lens-guides.md`
 
 ---
 
-## Flow
+## When to use this protocol
+
+| Situation | Protocol |
+| --- | --- |
+| Normal **veda-learn** session | Follow `lesson-structure.md` first. Delegate specialist **only after Practice** (phase 6) or for explicit `HEUR` request |
+| Standalone **HEUR** ("Run FP on X") | Full Teach-Model-Practice below |
+| **veda-analyze** | Original probe-first flow ok — decisions need interrogation |
+
+---
+
+## Teach-Model-Practice (replaces probe-first)
 
 ```text
-Lens brief → Insight probe → Dialogue (adaptive) → Write artifact → Hand off
+Motivating question → Intuition → Mini-model → Worked example → User application → (optional) formalism
 ```
+
+**Not:** Lens brief → insight probe → dialogue.
 
 | Phase | What | Rules |
 | --- | --- | --- |
-| **Lens brief** | Teach topic through this technique's lens | Before any question |
-| **Insight probe** | One non-obvious question | Not answerable from the brief |
-| **Dialogue** | Follow-ups from Apply now **pool** | Only where the answer left gaps |
-| **Artifact** | Persist brief, probe, dialogue, insights | Per specialist-protocol |
+| **Motivating question** | The problem this technique exists to solve | One sentence; creates mild confusion |
+| **Intuition** | Story, contrast, or visual — no jargon | Anchor domains from `BOND.md` |
+| **Mini-model** | Technique as 3–5 bullet framework | Topic-specific; ties to parent mental model if passed |
+| **Worked example** | Walk one case through the mini-model | Veda/specialist **teaches** — user watches |
+| **User application** | One unfamiliar case — user tries first | Tutor questions only; max 2 nudges before hint |
+| **Formalism** *(optional)* | Vocabulary, heuristic definition, formula | Only after intuition lands |
 
-**Pace:** Lens brief + insight probe may share one message. Dialogue stays one question at a time.
+**Pace:** Phases 1–4 may share 1–2 messages. User application: one question at a time.
 
 ---
 
-## Lens brief
+## Lens brief (redefined)
 
-**Purpose:** Give the user shared context so questions test *thinking*, not *missing background*.
+**Purpose:** Teach the technique's **mini-model**, not prep for a quiz.
 
-**Format:** Max 5 bullets or ~120 words.
+**Format:** ~150–250 words OR structured mini-model + one worked example sketch.
 
 **Must include:**
 
-1. Technique in one line (from heuristic definition)
-2. Two to four **topic-specific** facts seen through this lens
-3. One tie to user's **anchor domains** from `BOND.md` → `## Calibration` (if present)
+1. Motivating question this technique answers
+2. Mini-model (3–5 nodes or bullets)
+3. One **worked example** through the model (even abbreviated)
+4. Tie to anchor domains from `BOND.md`
+5. Link to the parent **core model** (Mastery Card → `## Core Model`) when Veda passed one
 
-**Must not include:**
+**Must not:**
 
-- The answer to the insight probe
-- Verbatim copy of all three Apply now questions
+- End with an insight probe before teaching an example
+- Cap at 5 bullets with no example walkthrough
+- Use Apply now questions verbatim as the opening move
 
-**Calibrate length by topic familiarity** (`BOND.md` → `Topic familiarity`):
-
-| Familiarity | Brief |
-| --- | --- |
-| Brand new | Longer — define terms, one concrete example |
-| Some exposure | Medium — assume basic vocabulary |
-| Comfortable | Short — sharp facts only |
-| Practitioner | Minimal — one to two non-obvious facts they'd overlook |
-
-**Familiarity never skips the brief** — it only shortens it.
+**Calibrate length** by `BOND.md` → Topic familiarity — longer teaching for brand new, shorter for practitioner — but **never skip worked example**.
 
 ---
 
-## Insight probe
+## Insight probe (repositioned)
 
-**Purpose:** Start the thinking phase. User must synthesize, judge, or apply — not repeat the brief.
+**Only after** worked example. Purpose: user **applies** the mini-model, not discovers missing background.
 
-**Rules:**
+Rules:
 
-- Exactly **one** question at session start (per technique)
-- Must require judgment beyond the brief (not recall)
-- Do **not** use Apply now question #1 verbatim as the probe
-- Draw probe *style* from `_lens-guides.md` → `Good insight probes`; instantiate for topic
+- One question
+- Requires using the mini-model on a **new** case
+- Not recall of the brief
 
-**Calibrate difficulty by familiarity:**
-
-| Familiarity | Probe |
-| --- | --- |
-| Brand new | Scaffolded — name a tradeoff or pick between two classes |
-| Some exposure | Apply lens to their specific topic |
-| Comfortable | Edge case, falsifier, or "which comparable misleads you?" |
-| Practitioner | Stress-test or steelman the weakest part of their model |
+If user struggles, **re-teach with a second example** — do not interrogate.
 
 ---
 
-## Dialogue (adaptive follow-ups)
+## Dialogue (adaptive)
 
-After the user answers the insight probe:
+After user application:
 
-1. **Affirm** what was strong; **push back** on vagueness (per voice and persona).
-2. Check Apply now **pool** in heuristic file — ask a follow-up **only** if a dimension is missing or thin.
-3. Do **not** march through all three Apply now questions by default.
-4. One question at a time. Stop when the lens feels sufficiently explored (typically 0–2 follow-ups).
-
-**Apply now pool** = the numbered questions under **Apply now — ask:** in the heuristic file. Use as ammunition, not a script.
+1. Affirm what they used correctly from the model
+2. One follow-up from Apply now **pool** only if a dimension is missing
+3. Stop after 0–2 follow-ups
+4. If vague: offer a hint framed as model node — not "try harder"
 
 ---
 
 ## Artifact format
 
-Append or update in `{understanding_artifacts}/{topic}.md`:
+When specialist writes to artifact:
 
 ```markdown
-## {Heuristic Name}
+### {Heuristic Name} *(deep-dive)*
 
 *{one-line definition}*
 
-### Lens brief
+#### Motivating question
 
-- ...
+...
 
-### Insight probe
+#### Mini-model
 
-> {question asked}
+...
 
-### Dialogue
+#### Worked example
 
+...
+
+#### Your application
+
+- **Prompt:** ...
 - **User:** ...
 - **{Specialist}:** ...
 
-### Insights
-
-- ...
-
-### Open questions
+#### Insights
 
 - ...
 ```
 
 ---
 
-## Worked example — RC on AI product architecture
+## Topic primer (veda-learn — Veda only)
 
-**Context:** Jared · Comfortable · Anchors: product/UX design, marathon running · Voice: Sparring Partner
+**Deprecated as bullet landscape.** Replace with Phase 1 **Curiosity hook** per `lesson-structure.md`.
 
-### Lens brief (Clio)
-
-- **Reference class** grounds you in what *usually* happens in comparable cases — not what makes yours special.
-- AI product architecture today is mostly a **platform-shift hybrid**: deterministic software core + probabilistic LLM layer — closer to cloud/API adoption than greenfield AI-native apps.
-- Base rates that matter: unit economics (tokens vs. value), trust (deterministic/probabilistic boundary), and whether the feature delivers enough user value to survive deprecation.
-- *Your UX lens:* architecture choices are trust affordances — like race-day conditions you can't control but must pace around.
-
-### Insight probe
-
-> Consumer AI apps and dev tools like Claude Code don't share the same base rates. **Which class of comparable products is most likely to mislead you** if you copy its success pattern — and why?
-
-*(Not: "What broad class does this belong to?" — that's recall, covered in the brief.)*
-
-### Dialogue (adaptive)
-
-- User answers with dev-tool vs. consumer gap → affirm, one follow-up from pool: *"What's the base rate you implicit assume for profitability — and what would falsify it?"*
-- Skip "why might this case differ" if already covered in probe answer.
-
----
-
-## Topic primer (veda-learn only)
-
-Before the **first** heuristic in a Learn session, Veda (not the specialist) may deliver a **topic primer**:
-
-- Three to four bullets: topic landscape (not technique-specific)
-- End with: *"We'll start with {code} — {name} will teach through that lens."*
-- **Skip** if user supplied source material (URL, doc, paste) — use their material instead
-- **Skip** on second+ heuristic in the same session (specialist lens brief covers it)
-
-See `veda-learn` step 2.5.
+Old primer bullets are only ok **inside** the framework phase as supporting context — never as session opener.
 
 ---
 
@@ -163,8 +141,30 @@ See `veda-learn` step 2.5.
 When Veda routes via `veda-heuristic`, pass:
 
 - Topic + artifact path
-- `BOND.md` → Calibration (anchors, familiarity, mental models)
-- `PERSONA.md` → Voice (Veda's voice; specialist keeps own persona)
-- Planned technique sequence if any
+- `# Mastery Card` / `## Core Model` from artifact (required if exists)
+- `BOND.md` → Calibration
+- Which framework **node** to deepen
 
-Specialist: read calibration → lens brief → probe → dialogue. Do not re-ask topic if already provided.
+Specialist: extend that node — do not restart topic from zero.
+
+---
+
+## Worked example — SN after core lesson
+
+**Context:** AI trends session · Core model: Story → Mechanism → Evidence → Incentive → Deployment → Durability
+
+**Motivating question (Sena):** *"Why do smart people build elaborate theories from one viral demo?"*
+
+**Intuition:** Hermes week — everyone talking. Story layer explodes. Mechanism layer (local + recursive learning) may be real but is buried in noise.
+
+**Mini-model (signal check):**
+
+```text
+Claim → Sample size → Incentive of teller → Deployment proof → Repeat across orgs
+```
+
+**Worked example:** "87% of dentists recommend…" — walk all five nodes.
+
+**User application:** Pick one AI headline from this week. Run the five-node check. Which node fails first?
+
+*(Not: "Which trend are you overweighting?" before teaching the check.)*

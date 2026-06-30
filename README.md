@@ -2,82 +2,70 @@
 
 A BMAD module built from the [User Manual](../user-manual.md).
 
-**Veda** 📖 is your memory orchestrator — she remembers your latticework and routes you to the right workflow or specialist.
+**Veda** 📖 is a warm, rigorous, lightly funny **mentor** that teaches you to think. It models
+your **learner state** — what you understand, misunderstand, and how you learn best — then
+chooses the right teaching move.
 
-**24 heuristic specialists** each own one thinking technique (Petra for first principles, Anya for analogies, Clio for reference classes, …).
+> "I'm not here to think for you. I'm here to help you become the kind of person who can think
+> through this yourself — and maybe enjoy it more than expected."
 
 ## Quick start
 
 1. Install or copy this module into your BMAD project.
 2. Invoke **`veda-agent`** (or say "Hey Veda").
-3. On first meeting, Veda runs **First Breath** — learns your name, interests, and how you like to think.
-4. Each session: Veda **welcomes you**, asks your **goal**, and on first meeting shows the **skills catalog**.
-5. Say **`INTRO`** anytime to see workflows + specialists in plain language.
+3. On first meeting, Veda learns your name, voice, anchor domains, and how you like to think.
+4. Each session: Veda **diagnoses what you need**, then runs the right mode.
+5. Say **`INTRO`** anytime to see the modes + lens library in plain language.
 
-## Invoke a specialist directly
+## Modes — teaching moves
 
-| Say | Routes to |
-| --- | --- |
-| "Run FP" / "Talk to Petra" | `veda-agent-first-principles` 🪨 |
-| "Run ANA" / "Talk to Anya" | `veda-agent-analogical-reasoning` 🌉 |
-| "Run RC" / "Talk to Clio" | `veda-agent-reference-class` 📊 |
-| Full roster | [`resources/agents/index.md`](resources/agents/index.md) |
+| Code | Use when you… | Produces | Was |
+| --- | --- | --- | --- |
+| `BUILD` | want to understand a topic | learning artifact (Mastery Card) | LEARN |
+| `PRACTICE` | have a model, need reps | practice log | new |
+| `DEBUG` | are confused / stuck / wrong | Misconception Ledger entry | new |
+| `DECIDE` | face a choice or tradeoff | decision memo | ANALYZE |
+| `LENS` | want one thinking lens | artifact deep-dive | HEUR |
+| `NEXT` | ask what to do next | recommendation | HELP |
+| `REVIEW` | want to revisit a model | updated mastery row | new |
 
-## What you get
-
-| Skill | Code | Produces |
-| --- | --- | --- |
-| Veda (orchestrator) | — | Memory, routing, latticework |
-| Learn workflow | `LEARN` | `docs/understanding/{topic}.md` (Learning Notes) |
-| Analyze workflow | `ANALYZE` | `docs/understanding/{topic}.md` (Decision Memo) |
-| Heuristic routing | `HEUR` + code | Delegates to specialist agent |
-| 24 specialists | `veda-agent-{slug}` | Focused technique sessions |
-| Help / routing | `HELP` | Recommends next specialist or workflow |
+Legacy codes (`LEARN`, `ANALYZE`, `HEUR`, `HELP`) still work.
 
 ## Architecture
 
 ```
-Veda (memory orchestrator)
-  ├─ LEARN → seven-phase lesson (one mental model) → optional HEUR deep-dive
-  ├─ ANALYZE → decision memo + heuristics
-  └─ HEUR {code} → veda-agent-{slug} (Teach-Model-Practice)
-       └─ writes artifact → hand off back to Veda
+Veda → Learner State → Tutor Loop → Mode → Practice / Feedback → Memory
+
+Tutor Loop:  Diagnose → Orient → Model → Demonstrate → Retrieve → Transfer → Feedback → Capture
 ```
 
-**Full system reference:** [`docs/system-overview.md`](docs/system-overview.md)
+**Full system reference:** [`docs/system-overview.md`](docs/system-overview.md) ·
+**Why it's shaped this way:** [`docs/architecture.md`](docs/architecture.md) ·
+**v1→v2:** [`docs/migration-v2.md`](docs/migration-v2.md)
 
 ## Module layout
 
 ```txt
 veda/
-  module.yaml
-  config.toml
-  agents/
-    veda.md                 memory orchestrator
-    specialists/            24 heuristic personas (generated)
-  resources/
-    agents/
-      registry.yaml         source of truth for specialists
-      index.md              roster table
-    heuristics/             technique reference content
-  skills/
-    veda-agent/        Veda launcher + sanctum
-    veda-agent-{slug}/        24 specialist launchers (generated)
-    veda-learn/ veda-analyze/ veda-heuristic/ veda-help/
-  scripts/
-    generate-specialist-agents.py
-  templates/
-  docs/
-    system-overview.md    ← architecture, pedagogy, file map
-    getting-started.md
+  module.yaml · config.toml
+  core/        tutor-loop · lesson-structure · feedback-protocol · socratic-ladder · memory-guidance · voice
+  modes/       build · practice · debug · decide · lens · next · review
+  lenses/      registry.yaml (source of truth) · index.md · guides/
+  agents/      veda.md · specialists/ (24 lens personas, generated)
+  resources/   heuristics/ (technique content) · agents/ (legacy roster)
+  skills/      veda-agent · veda-build/practice/debug/decide/lens/next · veda-agent-{slug} ×24
+               (+ legacy aliases: veda-learn/analyze/heuristic/help)
+  scripts/     generate-lens-agents.py
+  templates/   learning-artifact · mastery-card · practice-log · decision-memo
+  docs/        system-overview · architecture · getting-started · migration-v2
 ```
 
-## Regenerate specialists
+## Regenerate lenses
 
-After editing `resources/agents/registry.yaml`:
+After editing `lenses/registry.yaml`:
 
 ```bash
-python scripts/generate-specialist-agents.py
+python scripts/generate-lens-agents.py
 ```
 
 ## Source

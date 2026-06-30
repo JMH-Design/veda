@@ -1,125 +1,63 @@
-# {{topic}} — Decision Memo
+# Decision Memo: {{decision}}
 
-> Mode: **Analyze** · Guide: Veda · Updated: {{date}}
+> Mode: **DECIDE** · Guide: Veda · Updated: {{date}}
+> The recommendation comes **last** — only after the reasoning supports it. The point is a
+> better decider, not just a verdict.
 
 ## Decision
 
+*What exactly is being decided, by when, and why it matters.*
+
 {{decision_statement}}
 
-## Context
+## Options
 
-{{context}}
+*Including the unnamed ones and "do nothing."*
 
----
+- {{options}}
 
-## 1. Foundations
+## Constraints
 
-### First principles
+*Hard limits, resources, deadlines, non-negotiables.*
 
-{{first_principles}}
+- {{constraints}}
 
-### Key drivers
+## Assumptions
 
-{{key_drivers}}
-
-### System decomposition
-
-{{decomposition}}
-
----
-
-## 2. Patterns & base rates
-
-### Reference class
-
-*What usually happens in cases like this?*
-
-{{reference_class}}
-
-### Analogies & archetypes
-
-{{patterns}}
-
-### Signal vs noise in our evidence
-
-{{signal_noise}}
-
----
-
-## 3. Framing & questioning
-
-### Problem reframes
-
-| Frame | Opens up… |
-| --- | --- |
-| | |
-
-### Inversion
-
-*What would guarantee failure?*
-
-{{inversion}}
-
-### Assumptions audit
-
-| Assumption | Test | Risk if wrong |
+| Assumption | Must be true because… | Risk if wrong |
 | --- | --- | --- |
 | | | |
 
-### Root cause (5 Whys)
+## Lenses Applied
 
-{{five_whys}}
+*Only the few that move this decision (`modes/lens.md`). Strong defaults: RC, INV, CA, REF, PRED.*
 
----
-
-## 4. Synthesis
-
-### Integrative options (third ways)
-
-{{integrative}}
-
-### Multiple perspectives
-
-| Stakeholder / lens | Sees… |
+| Lens | What it surfaced |
 | --- | --- |
 | | |
 
-### Latticework links
+## Validation Gaps
 
-{{latticework}}
+*What we still don't know that could flip the answer.*
 
----
-
-## 5. Validation
-
-### Hypothesis
-
-{{hypothesis}}
-
-### Evidence for / against
-
-| For | Against |
-| --- | --- |
-| | |
-
-### Feedback plan
-
-{{feedback_plan}}
-
-### Prediction & review date
-
-{{prediction}}
-
----
+- {{validation_gaps}}
 
 ## Recommendation
 
 {{recommendation}}
 
-## Confidence
+**Confidence:** {{confidence}} — *what would raise or lower it:* {{confidence_drivers}}
 
-{{confidence}} — *What would raise or lower it:*
+## Next Action
 
-## Open questions
+*The single next move.*
 
-- 
+{{next_action}}
+
+## Prediction & Review
+
+*Make the call testable so it teaches later (PRED).*
+
+- **Prediction:** {{prediction}}
+- **Review date:** {{review_date}}
+- **Outcome (filled at review):**

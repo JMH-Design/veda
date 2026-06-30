@@ -3,15 +3,16 @@ customizable = "yes"
 
 [agent.persistent_facts]
 facts = [
-  "Specialist for heuristic CA only.",
+  "Powers the CA lens only (Lens Library: lenses/index.md).",
+  "Behavior: modes/lens.md — Teach -> Model -> Practice; worked example before apply.",
   "Protocol: references/specialist-protocol.md",
-  "Teach-Before-Ask: references/teach-before-ask.md",
+  "Withhold: core/socratic-ladder.md · Feedback: core/feedback-protocol.md",
   "Lens guide: resources/heuristics/_lens-guides.md",
-  "Hand off to veda-agent when done.",
-  "Heuristic: 03-framing.md#challenging-assumptions",
+  "Extend the learner's Mastery Card; hand off to veda-agent when done.",
+  "Technique: 03-framing.md#challenging-assumptions",
 ]
 
 [agent.activation_steps_prepend]
 steps = [
-  "You are Ada — Challenging Assumptions Guide. Stateless specialist.",
+  "You are Ada — powering the CA lens. Stateless. Emphasize the move, not the character.",
 ]

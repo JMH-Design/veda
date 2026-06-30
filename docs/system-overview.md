@@ -1,241 +1,160 @@
 # Veda — System Overview
 
-> **Last updated:** 2026-06-28  
-> Canonical reference for how the Veda module fits together — architecture, workflows, memory, pedagogy, and file layout.
+> **Last updated:** 2026-06-29 (v2 — learner-state architecture)
+> Canonical reference for how the Veda module fits together — architecture, the Tutor Loop,
+> modes, memory, lenses, and file layout.
 
-Veda is a **BMAD module** for deep understanding. It combines a **memory orchestrator** (Veda 📖), **two main workflows** (Learn and Analyze), and **24 stateless heuristic specialists** (Petra, Anya, Clio, …) — each owning one thinking technique from the [User Manual](../../user-manual.md).
+Veda is a **BMAD module** that helps you build durable understanding, practice reasoning,
+correct misconceptions, and leave each session thinking differently. It is built around a
+**warm, rigorous, lightly funny mentor** who teaches you to think — not a workflow router.
 
-**Design goal:** Help you leave sessions **thinking differently** — with durable mental models and recorded reasoning — not memorizing technique lists.
+**Design goal:** Veda should feel like *"a teacher who understands the learner, chooses the
+right teaching move, helps them practice, corrects their reasoning, and preserves durable
+understanding"* — not *"a system that routes the user into learning workflows."*
 
 ---
 
-## At a glance
+## The central shift (v1 → v2)
 
-| Layer | What it is | Persists? |
-| --- | --- | --- |
-| **Veda** (`veda-agent`) | Memory orchestrator — intro, routing, latticework | Yes — sanctum |
-| **Learn** (`veda-learn`) | Build understanding of a topic | Artifacts + sanctum |
-| **Analyze** (`veda-analyze`) | Work through a decision | Artifacts + sanctum |
-| **Heuristic routing** (`veda-heuristic`) | Delegate one technique to a specialist | Artifact section |
-| **24 specialists** (`veda-agent-{slug}`) | Stateless technique guides | No — fresh each invoke |
-| **Help** (`veda-help`) | Inspect state, recommend next step | Read-only |
+The old architecture asked: **"Which workflow should I run?"**
+
+```text
+Veda → Route to Learn / Analyze / Help / Heuristic → Write Artifact → Update Memory
+```
+
+The new architecture asks: **"What does this learner need next?"**
+
+```text
+Veda → Learner State → Tutor Loop → Mode → Practice / Feedback → Memory
+```
+
+**Learner state is the central object of the system.** Veda maintains an active model of what
+the learner understands, misunderstands, how they learn best, which models are fragile vs.
+durable, and what they should practice next.
 
 ---
 
 ## Architecture
 
 ```text
-                         ┌─────────────────────────────────┐
-                         │  Veda 📖 (memory orchestrator)   │
-                         │  sanctum · intro · routing       │
-                         └───────────────┬─────────────────┘
-                                         │
-           ┌─────────────────────────────┼─────────────────────────────┐
-           │                             │                             │
-           ▼                             ▼                             ▼
-    ┌─────────────┐              ┌─────────────┐              ┌─────────────┐
-    │   LEARN     │              │   ANALYZE   │              │    HELP     │
-    │ veda-learn  │              │veda-analyze │              │  veda-help  │
-    └──────┬──────┘              └──────┬──────┘              └─────────────┘
-           │                             │
-           │    seven-phase lesson       │    decision memo + heuristics
-           │    (Veda leads)             │    (probe-friendly)
-           │                             │
-           └──────────────┬──────────────┘
-                          │ optional, after core work
-                          ▼
-                 ┌─────────────────┐
-                 │  veda-heuristic  │
-                 │  HEUR + code     │
-                 └────────┬─────────┘
-                          │
-                          ▼
-         ┌────────────────────────────────────────────┐
-         │  Specialist (stateless) — e.g. Petra 🪨   │
-         │  Teach-Model-Practice on one technique     │
-         └────────────────┬───────────────────────────┘
-                          │ writes section
-                          ▼
-              docs/understanding/{topic}.md
-                          │
-                          ▼
-              hand off back to Veda → close / next step
+Veda 📖  (memory orchestrator + teacher identity)
+│
+├── Learner State            _bmad/sanctum/veda/
+│   ├── BOND.md              identity + stable preferences
+│   ├── LEARNER.md           HOW they learn + mastery map
+│   ├── MEMORY.md            durable mental models (latticework)
+│   ├── MISCONCEPTIONS.md    HOW they tend to be wrong
+│   └── sessions/            raw history
+│
+├── Tutor Core               veda/core/
+│   ├── tutor-loop.md        Diagnose→Orient→Model→Demonstrate→Retrieve→Transfer→Feedback→Capture
+│   ├── lesson-structure.md  seven-phase BUILD pedagogy
+│   ├── feedback-protocol.md kind, specific, useful correction
+│   ├── socratic-ladder.md   when to withhold vs. answer
+│   ├── memory-guidance.md   what to capture, where
+│   └── voice.md             how Veda sounds
+│
+├── Modes                    veda/modes/
+│   ├── BUILD   build a durable mental model
+│   ├── PRACTICE strengthen via retrieval + transfer
+│   ├── DEBUG   repair confusion / misconception
+│   ├── DECIDE  work through a decision
+│   ├── LENS    apply one thinking lens
+│   ├── NEXT    recommend the next move
+│   └── REVIEW  revisit prior models
+│
+├── Lens Library             veda/lenses/  (Foundations·Patterns·Framing·Synthesis·Validation)
+│
+└── Artifacts                docs/understanding/
+    ├── topics/{topic}.md          (Mastery Card + session notes)
+    ├── decisions/{decision}.md    (Decision Memo)
+    └── practice/{topic}-practice.md (Practice Log)
 ```
 
-### Memory vs stateless
+---
 
-| Agent type | Archetype | Remembers | Examples |
+## The Tutor Loop
+
+Every mode runs the loop (`core/tutor-loop.md`) unless there's a clear reason not to:
+
+```text
+1. Diagnose   → what does the learner need now?
+2. Orient     → say what we're doing and why (briefly)
+3. Model      → simplest useful mental model
+4. Demonstrate→ show the model seeing one example
+5. Retrieve   → learner rebuilds the model from memory
+6. Transfer   → learner applies it to an unfamiliar case
+7. Feedback   → sharpen the reasoning (feedback-protocol.md)
+8. Capture    → persist only durable value (memory-guidance.md)
+```
+
+Withholding within the loop follows the **Socratic Ladder** (`core/socratic-ladder.md`):
+guide before answering *when learning improves* — but never riddle jail, and give the answer
+the moment withholding stops serving the learner.
+
+---
+
+## Modes — teaching moves, not tools
+
+| Code | Use when the learner… | Produces | Was |
 | --- | --- | --- | --- |
-| **Veda** | memory | Sanctum, latticework, BOND preferences | `veda-agent` |
-| **Specialists** | stateless | Nothing — read artifact + BOND each time | Petra, Sena, Wren, … |
-| **Lia (LAT)** | stateless + sanctum write | Updates `MEMORY.md` latticework | `veda-agent-latticework` |
+| **BUILD** | wants to understand a topic | learning artifact (Mastery Card) | LEARN |
+| **PRACTICE** | has a model, needs reps | practice log | new |
+| **DEBUG** | is confused / wrong / stuck | Misconception Ledger entry | new |
+| **DECIDE** | faces a choice or tradeoff | decision memo | ANALYZE |
+| **LENS** | wants one thinking lens | artifact deep-dive section | HEUR |
+| **NEXT** | asks what to do next | chat recommendation | HELP |
+| **REVIEW** | wants to revisit a model | updated mastery row | new |
+
+Veda diagnoses which move fits — it doesn't present a menu of tools. When intent is vague, it
+makes a reasonable assumption and offers a direction.
+
+### BUILD (the seven phases)
+
+`Curiosity → Prior model → Framework → Examples → Retrieval → Practice → Reflection`, building
+**one** durable mental model and ending with a **Mastery Card**. Opens with a puzzle, never a
+definition dump. Full detail: `core/lesson-structure.md`.
 
 ---
 
-## Session lifecycle
+## Lens Library
 
-### 1. Open — Introduction
+The 24 thinking techniques are presented as a **Lens Library** (`lenses/index.md`), grouped
+Foundations → Patterns → Framing → Synthesis → Validation. Each lens is *a thinking move*; the
+persona behind it (Petra, Sena, Clio, …) is **flavor**, used lightly. Internally each lens is a
+stateless specialist agent (`veda-agent-{slug}`) that runs **Teach → Model → Practice**
+(`modes/lens.md`). Lenses deepen a model **after** the learner owns the core framework — never
+a forced chain.
 
-Veda runs `skills/veda-agent/references/introduction.md`:
+**Generation source of truth:** `lenses/registry.yaml`.
 
-| Visit | Flow |
+---
+
+## Memory — the sanctum (learner state)
+
+**Default path:** `_bmad/sanctum/veda/`. Load order on rebirth: `INDEX` → `PERSONA`, `CREED`,
+`BOND`, `LEARNER`, `MEMORY`, `MISCONCEPTIONS`, `CAPABILITIES`.
+
+| File | Holds |
 | --- | --- |
-| **First meeting** | Welcome → name → goal → calibration → skills catalog → route |
-| **Returning** | Welcome by name → goal → route (`INTRO` for full catalog) |
+| `BOND.md` | Identity + stable preferences |
+| `LEARNER.md` | **How** they learn; current mastery map |
+| `MEMORY.md` | **Durable mental models** (not summaries) |
+| `MISCONCEPTIONS.md` | **How** they tend to be wrong (raw material, never shame) |
+| `sessions/` | Append-only raw logs (not loaded on rebirth) |
 
-**Calibration** (`calibration.md`): anchor domains, topic familiarity, natural approach, mental models — saved to `BOND.md`. Host-specific UI in Cursor (`AskQuestion`), Claude Code, Codex, or text fallback.
-
-**Pace:** One question per message during intro.
-
-### 2. Route — Pick a workflow
-
-| User intent | Code | Workflow | Output template |
-| --- | --- | --- | --- |
-| Understand a topic | `LEARN` | `veda-learn` | `templates/learning-notes.md` |
-| Make a decision | `ANALYZE` | `veda-analyze` | `templates/decision-memo.md` |
-| One technique | `HEUR` + code | `veda-heuristic` → specialist | Section in active artifact |
-| What's next? | `HELP` | `veda-help` | Chat recommendations |
-| Full catalog | `INTRO` | introduction Step 3 | — |
-
-### 3. Work — Workflow-specific
-
-See [Learn mode](#learn-mode) and [Analyze mode](#analyze-mode) below.
-
-### 4. Close — Memory guidance
-
-Per `references/memory-guidance.md`:
-
-1. Finalize artifact (`Summary`, `Next exploration`)
-2. Append session log → `_bmad/sanctum/veda/sessions/YYYY-MM-DD.md`
-3. Curate latticework → `MEMORY.md` (keep under 200 lines)
-4. Run `veda-help` for follow-up suggestions
+Capture rule (`core/memory-guidance.md`): **only durable value.** Memory is not a junk drawer.
 
 ---
 
-## Learn mode
+## Artifacts — a growing library of understanding
 
-**Skill:** `veda-learn`  
-**Pedagogy:** `references/lesson-structure.md`  
-**Artifact:** `docs/understanding/{topic}.md`
-
-### Philosophy
-
-Learn sessions build **one durable mental model** per session — not a forced march through heuristics. The goal is an observable capability:
-
-> *By the end, I can look at X and explain Y.*
-
-Heuristics **deepen** after the model lands; they are not the default spine.
-
-### Seven phases (Veda leads)
-
-| # | Phase | Purpose |
+| Mode | Artifact | Template |
 | --- | --- | --- |
-| 1 | **Curiosity** | Hook with puzzle/contrast — no definitions |
-| 2 | **Prior model** | Elicit what user already believes; don't correct |
-| 3 | **Framework** | Reveal one diagram (≤6–7 nodes) |
-| 4 | **Examples** | Walk 2–3 cases through the framework |
-| 5 | **Retrieval** | User recreates + teaches back |
-| 6 | **Practice** | Unfamiliar case — user analyzes, tutor questions only |
-| 7 | **Reflection** | Surprise / never same way / homework applications |
-
-**Time mix target:** ~10% framework · ~20% examples · ~40% discussion · ~20% practice · ~10% reflection.
-
-### Optional heuristic deep-dive
-
-After **Practice**, Veda may delegate **one** specialist via `veda-heuristic` to stress-test the weakest framework node. Not SN → 5W → KD chains by default.
-
-### Anti-patterns (Learn)
-
-- Insight probe before teaching
-- Topic-primer bullet dump as session opener
-- Multi-heuristic chains without framework ownership
-- Specialist-led session skipping lesson phases
-
----
-
-## Analyze mode
-
-**Skill:** `veda-analyze`  
-**Artifact:** Decision Memo in `docs/understanding/{topic}.md`
-
-Analyze sessions target **choices, plans, and stuck problems**. Heuristic interrogation is appropriate here — suggested path emphasizes reference class, inversion, challenging assumptions, reframing, validation.
-
-Flow: decision capture → artifact → menu or guided path → delegate specialists → recommendation only after validation content exists.
-
----
-
-## Specialist system
-
-### Roster
-
-24 specialists — one heuristic each. Source of truth:
-
-- [`resources/agents/registry.yaml`](../resources/agents/registry.yaml)
-- [`resources/agents/index.md`](../resources/agents/index.md)
-
-Five phase groups: **Foundations → Patterns → Framing → Synthesis → Validation**.
-
-### Invocation
-
-1. **Through Veda** — "Run FP on this" → `veda-heuristic` → Petra
-2. **Direct** — invoke `veda-agent-first-principles` for a focused session
-
-### Specialist protocol
-
-**Reference:** `references/specialist-protocol.md` + `references/teach-before-ask.md`
-
-| Mode | Specialist behavior |
-| --- | --- |
-| **Learn** (after core lesson) | **Teach-Model-Practice** — motivating question → intuition → mini-model → **worked example** → user application |
-| **Analyze** | May probe-first when decision is active |
-| **Standalone HEUR** | Full Teach-Model-Practice |
-
-**Learn delegation:** Veda passes `## Core mental model` from artifact; specialist extends one node — does not replace the lesson or open with a quiz.
-
-### Regenerate specialists
-
-After editing `registry.yaml`:
-
-```bash
-python veda/scripts/generate-specialist-agents.py
-```
-
----
-
-## Memory — the sanctum
-
-**Default path:** `_bmad/sanctum/veda/`
-
-| File | Purpose |
-| --- | --- |
-| `INDEX.md` | Sanctum map — loaded on every Veda rebirth |
-| `PERSONA.md` | Voice and style |
-| `CREED.md` | Mission and values |
-| `BOND.md` | Owner name, preferences, **calibration** |
-| `MEMORY.md` | Curated latticework (<200 lines) |
-| `CAPABILITIES.md` | Built-in + learned capabilities |
-| `sessions/` | Raw session logs (not loaded on rebirth) |
-
-**Init:**
-
-```bash
-python veda/skills/veda-agent/scripts/init-sanctum.py \
-  --sanctum _bmad/sanctum/veda \
-  --owner "Your Name"
-```
-
----
-
-## Artifacts
-
-**Default path:** `docs/understanding/` (config: `understanding_artifacts` in `config.toml`)
-
-| Template | Used by | Structure |
-| --- | --- | --- |
-| `templates/learning-notes.md` | Learn | Outcome → session log → core model → examples → retrieval → practice → optional heuristic deep-dives |
-| `templates/decision-memo.md` | Analyze | Decision framing + heuristic sections + recommendation |
-
-Artifacts are your **growing library of understanding** — linkable from `MEMORY.md`.
+| BUILD | `topics/{topic}.md` (opens with Mastery Card) | `templates/learning-artifact.md` |
+| DECIDE | `decisions/{decision}.md` | `templates/decision-memo.md` |
+| PRACTICE | `practice/{topic}-practice.md` | `templates/practice-log.md` |
+| — | the portable object | `templates/mastery-card.md` |
 
 ---
 
@@ -243,42 +162,38 @@ Artifacts are your **growing library of understanding** — linkable from `MEMOR
 
 ```text
 veda/
-├── module.yaml              # Module manifest, phases, agent registry
-├── config.toml              # understanding_artifacts, language
-├── README.md                # Quick start (links here for depth)
-├── docs/
-│   ├── system-overview.md   # ← this file
-│   └── getting-started.md   # Install + first session steps
-├── agents/
-│   ├── veda.md              # Orchestrator persona
-│   └── specialists/         # 24 heuristic personas
-├── references/              # Shared protocols (canonical)
-│   ├── lesson-structure.md  # Learn pedagogy (seven phases)
-│   ├── teach-before-ask.md  # Specialist Teach-Model-Practice
-│   ├── specialist-protocol.md
-│   └── memory-guidance.md
-├── resources/
-│   ├── agents/              # registry.yaml, index.md
-│   └── heuristics/          # Technique content + lens guides
-├── skills/
-│   ├── veda-agent/          # Orchestrator launcher + intro/calibration refs
-│   ├── veda-learn/
-│   ├── veda-analyze/
-│   ├── veda-heuristic/
-│   ├── veda-help/
-│   └── veda-agent-{slug}/   # 24 specialist launchers
-├── scripts/
-│   └── generate-specialist-agents.py
-└── templates/
-    ├── learning-notes.md
-    └── decision-memo.md
+├── module.yaml · config.toml · README.md
+├── docs/      system-overview.md · getting-started.md · architecture.md · migration-v2.md
+├── core/      tutor-loop · lesson-structure · feedback-protocol · socratic-ladder · memory-guidance · voice
+├── modes/     build · practice · debug · decide · lens · next · review
+├── lenses/    registry.yaml · index.md · guides/
+├── agents/    veda.md · specialists/ (24 lens personas, generated)
+├── references/ specialist-protocol.md · teach-before-ask.md (lens plumbing) · lesson-structure.md (→core)
+├── resources/ heuristics/ (technique content) · agents/ (legacy roster)
+├── skills/    veda-agent · veda-build/practice/debug/decide/lens/next · veda-agent-{slug} ×24
+│              (+ legacy aliases: veda-learn/analyze/heuristic/help)
+├── scripts/   generate-lens-agents.py (formerly generate-specialist-agents.py)
+└── templates/ learning-artifact · mastery-card · practice-log · decision-memo
 ```
 
-### Cursor install mirror
+**Canonical protocols live in `core/`.** Mode behavior in `modes/`. The Cursor mirror
+(`.cursor/skills/`) and any Claude Code skills are generated/synced from these — see
+`migration-v2.md`. Mark generated files: `<!-- GENERATED FROM veda/core/…. DO NOT EDIT. -->`.
 
-Skills are copied to `.cursor/skills/` in this project. **Canonical protocols** live under `veda/references/`; skill folders may duplicate `references/` subsets (e.g. `veda-agent/references/introduction.md`).
+---
 
-When editing pedagogy, update **`veda/references/`** first, then sync dependent skill docs.
+## Pedagogical rules (all modes)
+
+1. Don't answer too early — guide when it helps (Socratic Ladder).
+2. Don't withhold too long — no riddle jail.
+3. Make the model visible.
+4. Use examples as bridges, not decoration.
+5. Require retrieval.
+6. Require transfer.
+7. Correct kindly and clearly.
+8. Capture only durable value.
+9. Prefer one good next step over a curriculum.
+10. Make progress emotionally visible.
 
 ---
 
@@ -286,71 +201,19 @@ When editing pedagogy, update **`veda/references/`** first, then sync dependent 
 
 | Question | Read |
 | --- | --- |
-| How do I start? | `docs/getting-started.md` |
-| How does Learn teaching work? | `references/lesson-structure.md` |
-| How do specialists teach? | `references/teach-before-ask.md` |
-| Session introduction flow | `skills/veda-agent/references/introduction.md` |
-| Calibration | `skills/veda-agent/references/calibration.md` |
-| Which specialist for code X? | `resources/agents/index.md` |
-| Heuristic definitions | `resources/heuristics/` |
-| Lens guide per code | `resources/heuristics/_lens-guides.md` |
-| Veda menu commands | `agents/veda.md` |
-
----
-
-## Configuration
-
-**Team scope** (`config.toml` / installer):
-
-- `understanding_artifacts` — default `docs/understanding`
-- `communication_language` — default `en`
-
-**User scope** (sanctum / BOND):
-
-- `owner_name`
-- Calibration: anchor domains, familiarity, approach, mental models
-- Session style, typical mode (learning / deciding)
-
----
-
-## What was outdated (pre-2026-06-28)
-
-These files described the **old Learn pedagogy** (probe-first, heuristic chains):
-
-| File | Stale content |
-| --- | --- |
-| `README.md` | Architecture diagram omits seven-phase Learn |
-| `docs/getting-started.md` | "Lens brief → insight probe" as primary Learn flow |
-| `agents/veda.md` | Learn mode: "lens brief → insight probe → dialogue" |
-| `skills/veda-heuristic/SKILL.md` | Step 5 still says lens brief → insight probe first |
-
-**Current truth:** Learn = `lesson-structure.md` (seven phases, one mental model). Specialists = Teach-Model-Practice after core lesson or standalone HEUR.
-
----
-
-## Quick command reference
-
-| Say | Result |
-| --- | --- |
-| "Hey Veda" | Introduction → route |
-| `LEARN` + topic | Seven-phase lesson |
-| `ANALYZE` + decision | Decision memo workflow |
-| `HEUR` + `FP` | Route to Petra |
-| `INTRO` | Full skills catalog |
-| `HELP` | Next-step recommendations |
-| `MEM` | Latticework summary from sanctum |
-| `ROSTER` | All 24 specialists |
-| `VOICE` | Switch Tutor / Scientist / Sparring Partner / Explorer |
-
----
-
-## Source material
-
-Heuristics transcribed from [`user-manual.md`](../../user-manual.md) (pages 2–6). Phase 5 validation heuristics inferred where source was incomplete.
+| How does Veda decide what to do? | `core/tutor-loop.md` |
+| How does BUILD teaching work? | `core/lesson-structure.md` |
+| When does Veda answer vs. ask? | `core/socratic-ladder.md` |
+| How does Veda respond to an answer? | `core/feedback-protocol.md` |
+| How does Veda sound? | `core/voice.md` |
+| What gets remembered, where? | `core/memory-guidance.md` |
+| What are the lenses? | `lenses/index.md` |
+| What changed from v1? | `docs/migration-v2.md` |
 
 ---
 
 ## Related docs
 
-- [Getting started](./getting-started.md) — install and first session
-- [Update Veda for Claude Code](./update-veda-claude-code.md) — sync skills to Claude Code
+- [Getting started](./getting-started.md)
+- [Architecture](./architecture.md)
+- [Migration v1 → v2](./migration-v2.md)

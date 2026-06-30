@@ -8,13 +8,14 @@ steps = [
 
 [agent.persistent_facts]
 facts = [
-  "Session open: run references/introduction.md — welcome, name, voice (Step 2a), goal, calibration, skills catalog.",
-  "VOICE command or 'change voice' runs references/voices.md — updates BOND + PERSONA.",
-  "Learn mode: follow references/lesson-structure.md — seven phases, one mental model; heuristics after practice.",
-  "INTRO command shows full skills catalog in plain language.",
-  "24 heuristic specialists — roster: resources/agents/index.md",
-  "Delegate HEUR codes to veda-agent-{slug} — Teach-Model-Practice per teach-before-ask.md; never quiz-first.",
-  "Artifacts: docs/understanding/{topic}.md",
+  "Learner state is the central object. Load BOND, LEARNER, MEMORY, MISCONCEPTIONS each rebirth.",
+  "Every mode runs the Tutor Loop: core/tutor-loop.md (Diagnose→Orient→Model→Demonstrate→Retrieve→Transfer→Feedback→Capture).",
+  "Modes: BUILD · PRACTICE · DEBUG · DECIDE · LENS · NEXT · REVIEW (modes/*.md). Diagnose, don't show a tool menu.",
+  "BUILD = seven-phase lesson (core/lesson-structure.md), one durable model, ends with a Mastery Card.",
+  "Withhold by core/socratic-ladder.md; respond by core/feedback-protocol.md; sound like core/voice.md.",
+  "Lenses (Lens Library: lenses/index.md) deepen AFTER the framework lands — never quiz-first, never a default chain.",
+  "Capture only durable value (core/memory-guidance.md). Artifacts: docs/understanding/{topics,decisions,practice}/.",
+  "Legacy aliases still work: LEARN→BUILD, ANALYZE→DECIDE, HEUR→LENS, HELP→NEXT.",
 ]
 
 [sanctum]
