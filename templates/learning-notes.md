@@ -10,154 +10,134 @@
 
 {{goal}}
 
----
+## Learning outcome
 
-## Topic primer
+*By the end of this session, I should be able to…*
 
-*(Veda — once per Learn session, before first heuristic. Skip if user supplied source material.)*
-
-{{topic_primer}}
+{{learning_outcome}}
 
 ---
 
-## 1. Foundations
+## Session log
 
-### First principles
+### Curiosity hook
 
-*What do we know to be true?*
+*(Puzzle or contrast that opened the session — no definitions.)*
 
-{{first_principles}}
+{{curiosity}}
 
-### Decomposition
+### Prior mental model
 
-*Parts of the system:*
+*What I thought before the framework — captured verbatim, not corrected.*
 
-{{decomposition}}
+{{prior_model}}
 
-### Key drivers (Pareto)
+### Reflection
 
-*The 20% that drives 80%:*
-
-#### Lens brief
-
-#### Insight probe
-
-#### Dialogue
-
-#### Insights
-
-{{key_drivers}}
-
-### Structure map
-
-*How parts connect:*
-
-{{structure_map}}
-
-### Abstraction ladder
-
-| Zoom out (big picture) | Zoom in (detail) |
-| --- | --- |
-| {{zoom_out}} | {{zoom_in}} |
+- **Surprised me:**
+- **Never look at the same way:**
+- **Use tomorrow:**
 
 ---
 
-## 2. Patterns & analogies
+## Core mental model
 
-### Analogies
+*One diagram, ≤6–7 nodes. Everything in the session maps here.*
 
-{{analogies}}
+```text
+{{framework_diagram}}
+```
 
-### Schemas / chunks recognized
+### Node notes
 
-{{schemas}}
-
-### Systems archetypes
-
-{{archetypes}}
-
-### Reference class
-
-*What usually happens in cases like this?*
-
-#### Lens brief
-
-#### Insight probe
-
-#### Dialogue
-
-#### Insights
-
-{{reference_class}}
-
-### Signal vs noise
-
-{{signal_noise}}
+{{framework_nodes}}
 
 ---
 
-## 3. Framing & questions
+## Examples
 
-### Reframes tried
+*Cases walked through the framework — not product trivia.*
 
-{{reframes}}
+### Example 1
 
-### Assumptions challenged
+{{example_1}}
 
-| Assumption | Evidence | Verdict |
-| --- | --- | --- |
-| | | |
+### Example 2
 
-### Root cause (5 Whys)
+{{example_2}}
 
-{{five_whys}}
+### Example 3 *(optional)*
 
-### Socratic highlights
-
-{{socratic}}
+{{example_3}}
 
 ---
 
-## 4. Synthesis
+## Retrieval
 
-### General principles
+*My recreation of the framework from memory + teach-back.*
 
-{{principles}}
+{{retrieval}}
 
-### Latticework links
+---
+
+## Practice
+
+*Unfamiliar case — I analyzed; tutor questioned only.*
+
+**Case:** {{practice_case}}
+
+{{practice_dialogue}}
+
+---
+
+## Heuristic deep-dives *(optional — after practice)*
+
+*Extended Teach-Model-Practice on one framework node.*
+
+{{heuristic_sections}}
+
+---
+
+## Latticework links
 
 | This connects to… | Because… |
 | --- | --- |
 | | |
 
-### Cross-domain insights
-
-{{cross_pollination}}
-
----
-
-## 5. Validation
-
-### Hypotheses to test
-
-| Hypothesis | How to test | Status |
-| --- | --- | --- |
-| | | open |
-
-### Evidence so far
-
-{{evidence}}
-
-### What would change my mind
-
-{{falsifiers}}
-
 ---
 
 ## Summary
+
+*The one model I'll remember — not a list of techniques.*
 
 {{summary}}
 
 ## Next exploration
 
+*Homework: 3 everyday applications, ~5 min each, same framework.*
+
 - 
+
+---
+
+<!-- Legacy heuristic buckets below: use only for extended multi-session deep dives -->
+
+## 1. Foundations
+
+*(optional extended sessions)*
+
+## 2. Patterns & analogies
+
+*(optional extended sessions)*
+
+## 3. Framing & questions
+
+*(optional extended sessions)*
+
+## 4. Synthesis
+
+*(optional extended sessions)*
+
+## 5. Validation
+
+*(optional extended sessions)*

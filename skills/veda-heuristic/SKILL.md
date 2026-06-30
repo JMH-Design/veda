@@ -26,9 +26,9 @@ Specialists run **Teach-Before-Ask** (`{module-root}/references/teach-before-ask
 
 1. Resolve code → specialist skill via `{module-root}/resources/agents/index.md` or `registry.yaml`.
 2. Confirm delegation: "Routing to {icon} {name} ({title}) for {code}."
-3. Pass context: topic, artifact path, calibration from `BOND.md`, prior session notes, planned sequence if any.
+3. Pass context: topic, artifact path, calibration from `BOND.md`, `## Core mental model` if present, prior session notes.
 4. **Invoke specialist skill** (e.g. `veda-agent-first-principles`) — do not run heuristic inline.
-5. Specialist delivers lens brief → insight probe → dialogue; writes artifact section and hands back to Veda on complete.
+5. Specialist runs **Teach-Model-Practice** per `references/teach-before-ask.md`; writes artifact section and hands back to Veda on complete.
 
 ## Code → specialist map
 

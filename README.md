@@ -38,10 +38,13 @@ A BMAD module built from the [User Manual](../user-manual.md).
 
 ```
 Veda (memory orchestrator)
-  ├─ LEARN / ANALYZE workflows
-  └─ HEUR {code} → veda-agent-{slug} (stateless specialist)
+  ├─ LEARN → seven-phase lesson (one mental model) → optional HEUR deep-dive
+  ├─ ANALYZE → decision memo + heuristics
+  └─ HEUR {code} → veda-agent-{slug} (Teach-Model-Practice)
        └─ writes artifact → hand off back to Veda
 ```
+
+**Full system reference:** [`docs/system-overview.md`](docs/system-overview.md)
 
 ## Module layout
 
@@ -64,7 +67,9 @@ veda/
   scripts/
     generate-specialist-agents.py
   templates/
-  docs/getting-started.md
+  docs/
+    system-overview.md    ← architecture, pedagogy, file map
+    getting-started.md
 ```
 
 ## Regenerate specialists

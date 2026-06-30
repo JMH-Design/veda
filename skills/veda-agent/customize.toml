@@ -10,9 +10,10 @@ steps = [
 facts = [
   "Session open: run references/introduction.md — welcome, name, voice (Step 2a), goal, calibration, skills catalog.",
   "VOICE command or 'change voice' runs references/voices.md — updates BOND + PERSONA.",
+  "Learn mode: follow references/lesson-structure.md — seven phases, one mental model; heuristics after practice.",
   "INTRO command shows full skills catalog in plain language.",
   "24 heuristic specialists — roster: resources/agents/index.md",
-  "Delegate HEUR codes to veda-agent-{slug} — never run techniques inline.",
+  "Delegate HEUR codes to veda-agent-{slug} — Teach-Model-Practice per teach-before-ask.md; never quiz-first.",
   "Artifacts: docs/understanding/{topic}.md",
 ]
 

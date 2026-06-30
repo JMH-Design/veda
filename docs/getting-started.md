@@ -62,9 +62,13 @@ Say: **"Hey Veda"** or invoke `veda-agent`.
 
 Introduction: `skills/veda-agent/references/introduction.md` · Calibration: `skills/veda-agent/references/calibration.md`
 
-### Teach-Before-Ask (Learn mode)
+### Learn mode pedagogy
 
-Specialists **teach before they quiz**: a short **lens brief** on your topic through that technique, then one **insight probe** you can't answer from the brief alone, then adaptive dialogue. Topic familiarity calibrates brief length — it never skips teaching. Protocol: `references/teach-before-ask.md` · Lens guides: `resources/heuristics/_lens-guides.md`
+Learn sessions follow the **seven-phase lesson** in [`references/lesson-structure.md`](../references/lesson-structure.md): curiosity → prior model → one framework → examples → retrieval → practice → reflection. Heuristics deepen **after** practice — not as a default chain.
+
+Specialists use **Teach-Model-Practice** ([`references/teach-before-ask.md`](../references/teach-before-ask.md)): motivating question → intuition → mini-model → worked example → user application.
+
+**Full system map:** [`docs/system-overview.md`](system-overview.md)
 
 ### Examples
 
